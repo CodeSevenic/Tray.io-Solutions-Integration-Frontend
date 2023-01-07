@@ -27,10 +27,10 @@ export class Authentications extends React.PureComponent {
     text: { fontWeight: 'bold' },
     grid: {
       maxWidth: '900px',
-      margin: '20px auto',
+      margin: '20px 20px',
     },
-    header: { margin: '20px' },
-    headerOptions: { display: 'flex', margin: '0 20px 20px 20px' },
+    header: { margin: '20px 0' },
+    headerOptions: { display: 'flex', margin: '0 0px 20px 0px' },
     headerOption: { marginRight: '20px' },
     list: {
       margin: '10px',

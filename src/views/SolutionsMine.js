@@ -46,22 +46,22 @@ export class SolutionsMine extends React.PureComponent {
 
   buildList(solutionInstances) {
     return (
-      <div>
-        <div style={this.styles.list}>
-          <Typography variant="headline" style={{ margin: '20px' }}>
-            My Solution Instances
-          </Typography>
-          {solutionInstances.map(({ id, name, enabled }) => (
-            <Instance
-              id={id}
-              key={id}
-              name={name}
-              enabled={enabled}
-              loadAllSolutionInstances={this.loadAllSolutionInstances}
-            />
-          ))}
-        </div>
+      // <div cla>
+      <div className="solutions-list" style={this.styles.list}>
+        <Typography variant="headline" style={{ margin: '20px 0' }}>
+          My Solution Instances
+        </Typography>
+        {solutionInstances.map(({ id, name, enabled }) => (
+          <Instance
+            id={id}
+            key={id}
+            name={name}
+            enabled={enabled}
+            loadAllSolutionInstances={this.loadAllSolutionInstances}
+          />
+        ))}
       </div>
+      // </div>
     );
   }
 

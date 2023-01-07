@@ -1,0 +1,164 @@
+*,
+*::after,
+*::before {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  position: relative;
+  height: 100vh;
+}
+
+/* ======== Modifying Styles ========= */
+
+div#root {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 100%;
+}
+
+.view-container {
+  height: 100vh;
+}
+
+.header-bar {
+  background-color: #161b30 !important;
+  padding: 10px 30px !important;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.register-component,
+.login-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+}
+
+.login-form .form-wrapper,
+.register-component .form-wrapper {
+  position: relative !important;
+  top: 50% !important;
+  transform: translateY(-50%);
+  height: fit-content;
+  padding: 0 20px;
+}
+
+.login-form .form-wrapper .logo-wrapper {
+  margin-bottom: 50px;
+}
+
+.login-form .form-wrapper .form-div > div,
+.register-form .register-form-wrapper {
+  position: relative !important;
+}
+
+.left-content {
+  /* background-color: red; */
+  background-image: url(/pexels-marta-branco.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  position: relative;
+}
+
+.text-stripe {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 70px;
+  right: 0;
+  background-color: #fff;
+  z-index: 10;
+}
+
+.logo-wrapper > svg {
+  margin: 0 auto;
+  display: block;
+}
+
+.logo-vertical {
+  width: 30px;
+  margin: 40px auto;
+}
+
+.logo-vertical > img {
+  width: 100%;
+}
+
+.MuiButton-textSecondary-70,
+.MuiButtonBase-root-67 {
+  color: #fff !important;
+  background: #161b30 !important;
+  margin-top: 20px !important;
+  border: 2px solid #161b30 !important;
+}
+.MuiButton-textSecondary-70:hover,
+.MuiButtonBase-root-67:hover {
+  color: #161b30 !important;
+  background: #fff !important;
+  margin-top: 20px !important;
+  border: 2px solid #161b30;
+}
+
+.MuiTypography-subheading-39 {
+  color: rgb(255 252 252) !important;
+}
+
+.link div svg,
+div svg {
+  fill: white !important;
+}
+
+.MuiListItem-container-6 div div span {
+  color: #161b30 !important;
+}
+
+.solutions-list {
+  margin: 0 20px !important;
+}
+
+.header-logo svg {
+  max-width: 60px;
+}
+
+.authButtons {
+  flex-wrap: wrap;
+}
+
+/* ========== Responsive =========== */
+@media screen and (max-width: 768px) {
+  .left-content {
+    display: none;
+  }
+
+  .register-component,
+  .login-form {
+    display: grid;
+    grid-template-columns: unset;
+    height: 100vh;
+  }
+}
+@media screen and (max-width: 767px) {
+  .form-wrapper * {
+    min-width: 0 !important;
+  }
+
+  .register-component .form-wrapper * {
+    min-width: 0 !important;
+    width: unset !important;
+  }
+
+  .register-component .form-wrapper form * {
+    width: 100% !important;
+  }
+}

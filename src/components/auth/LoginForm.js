@@ -79,11 +79,11 @@ class LoginForm extends React.Component {
             </form>
           </Paper>
 
-          <div style={styles.buttonsDiv}>
+          {/* <div style={styles.buttonsDiv}>
             <Button label="Register" href="/register" icon={<PersonAdd />} color="secondary">
               Register New Account
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     );

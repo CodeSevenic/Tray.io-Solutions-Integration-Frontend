@@ -110,6 +110,10 @@ div#root {
   border: 2px solid #161b30;
 }
 
+.root nav div span {
+  color: #ffffff !important;
+}
+
 .MuiTypography-subheading-39 {
   color: rgb(255 252 252) !important;
 }

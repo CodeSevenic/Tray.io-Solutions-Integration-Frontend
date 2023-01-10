@@ -1,5 +1,3 @@
-import { baseUrl } from '../urlConfig';
-
 export const listSolutions = () =>
   fetch(`/api/solutions`, { credentials: 'include' }).then(async (res) => ({
     ok: res.ok,

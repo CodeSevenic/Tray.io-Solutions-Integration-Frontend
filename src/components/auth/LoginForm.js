@@ -46,7 +46,7 @@ class LoginForm extends React.Component {
         <div style={styles.loginContainer}>
           <Paper style={styles.paper}>
             <Typography style={styles.loginHeader} variant="headline">
-              Login to MO Solutions Integration
+              LOGIN
             </Typography>
             <form
               ref={(elem) => (this.form = elem)}
@@ -63,6 +63,9 @@ class LoginForm extends React.Component {
                 label="Username"
                 placeholder="user"
                 fullWidth={true}
+                className="login-input"
+                type="text"
+                autoComplete="off"
               />
               <Input
                 inputRef={(input) => (this.passwordElem = input)}
@@ -71,9 +74,16 @@ class LoginForm extends React.Component {
                 placeholder="pass"
                 fullWidth={true}
                 type="password"
+                className="login-input"
               />
 
-              <Button style={styles.loginBtn} variant="outlined" color="primary" type="submit">
+              <Button
+                className="login-button"
+                style={styles.loginBtn}
+                variant="outlined"
+                color="primary"
+                type="submit"
+              >
                 Login
               </Button>
             </form>

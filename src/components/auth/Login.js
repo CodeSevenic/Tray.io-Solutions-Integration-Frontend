@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import Loading from '../Loading';
 import { auth } from './Auth';
 import Logo from '../../img/Artboard.png';
+import YoboDataLogoV from '../../img/YoboDataLogo.png';
 import './Login.css';
 
 export default class Login extends React.Component {
@@ -80,7 +81,7 @@ export default class Login extends React.Component {
         <div className="left-content">
           <div className="text-stripe">
             <div className="logo-vertical">
-              <img src="/MO-secondary-logo-colour.webp" alt="Logo Vertical" />
+              <img src={YoboDataLogoV} alt="Logo Vertical" />
             </div>
           </div>
         </div>

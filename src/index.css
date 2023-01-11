@@ -86,11 +86,6 @@ div#root {
   display: block;
 }
 
-.logo-vertical {
-  width: 30px;
-  margin: 40px auto;
-}
-
 .logo-vertical > img {
   width: 100%;
 }

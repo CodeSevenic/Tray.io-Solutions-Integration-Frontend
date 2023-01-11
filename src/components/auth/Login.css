@@ -2,3 +2,44 @@
   display: block;
   margin: 0 auto;
 }
+
+.logo-vertical {
+  width: 52px;
+  margin: 40px auto;
+}
+
+.form-div > div {
+  max-width: 500px !important;
+}
+
+.form-div > div > div {
+  border-radius: unset !important;
+  padding: 40px !important;
+  box-shadow: 0 0px 14px -8px #222832 !important;
+}
+
+.form-div > div > div .login-button {
+  display: block;
+  margin: 20px auto 0 auto !important;
+  float: unset !important;
+  width: 120px;
+  background-color: transparent;
+  color: #222832;
+  font-weight: bold;
+  border: 1px solid #222832;
+}
+
+.form-div > div > div form div:first-child {
+  margin-bottom: 10px;
+}
+
+.form-div > div > div form div input {
+  /* border: 1px solid #e94309; */
+  padding: 10px;
+  /* border-radius: 10px; */
+  font-size: 1.5rem;
+}
+
+.form-div > div > div form .login-input:after {
+  border-bottom: 2px solid #e94309 !important;
+}

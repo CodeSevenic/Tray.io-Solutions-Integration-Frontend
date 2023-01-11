@@ -5,3 +5,15 @@
   font-weight: 500;
   font-size: 1.3rem;
 }
+
+.header-bar {
+  background-color: #222832 !important;
+  padding: 10px 30px !important;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header-logo svg {
+  width: 300px;
+}

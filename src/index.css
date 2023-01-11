@@ -28,14 +28,6 @@ div#root {
   height: 100vh;
 }
 
-.header-bar {
-  background-color: #161b30 !important;
-  padding: 10px 30px !important;
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
 .register-component,
 .login-form {
   display: grid;
@@ -124,10 +116,6 @@ div svg {
 
 .solutions-list {
   margin: 0 20px !important;
-}
-
-.header-logo svg {
-  max-width: 60px;
 }
 
 .authButtons {

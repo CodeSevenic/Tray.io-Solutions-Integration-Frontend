@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import Loading from '../Loading';
 import { auth } from './Auth';
 import Logo from '../../img/Artboard.png';
+import './Login.css';
 
 export default class Login extends React.Component {
   state = {

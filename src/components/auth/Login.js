@@ -3,8 +3,7 @@ import LoginForm from './LoginForm';
 import { Redirect } from 'react-router-dom';
 import Loading from '../Loading';
 import { auth } from './Auth';
-import { MOLogo } from '../svgs';
-import { baseUrl } from '../../urlConfig';
+import Logo from '../../img/Artboard.png';
 
 export default class Login extends React.Component {
   state = {
@@ -71,7 +70,7 @@ export default class Login extends React.Component {
       <div className="login-form">
         <div className="form-wrapper">
           <div className="logo-wrapper">
-            <MOLogo />
+            <img width={150} height={150} src={Logo} alt="YuboData Logo" />
           </div>
           <Loading loading={this.state.loading}>
             <LoginForm onLogin={this.login} />

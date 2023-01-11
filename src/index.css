@@ -44,10 +44,6 @@ div#root {
   padding: 0 20px;
 }
 
-.login-form .form-wrapper .logo-wrapper {
-  margin-bottom: 50px;
-}
-
 .login-form .form-wrapper .form-div > div,
 .register-form .register-form-wrapper {
   position: relative !important;

@@ -43,3 +43,7 @@
 .form-div > div > div form .login-input:after {
   border-bottom: 2px solid #e94309 !important;
 }
+
+.login-form .form-wrapper .logo-wrapper {
+  margin-bottom: 10px;
+}

@@ -1,0 +1,43 @@
+﻿.user-update-form {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-update-form > form {
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 0 10px -5px #000000;
+}
+
+.user-update-form > form > header {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.user-update-form > form .btn-update {
+  width: fit-content;
+  padding: 10px 25px;
+  background-color: #ea5a28;
+  color: white;
+  margin: 10px auto 0 auto;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+}
+
+.user-update-form > form > div > input {
+  padding: 10px;
+  border: 1px solid gray;
+  min-width: 300px;
+}

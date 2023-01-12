@@ -1,4 +1,5 @@
 import React from 'react';
+import UserUpdate from './auth/UserUpdate';
 import SideNav from './SideNav';
 // import { withTheme } from '@material-ui/core/styles';
 import { MOLogoWhite, YuboDataLogoDark } from './svgs';
@@ -16,6 +17,7 @@ const View = ({ children }) => {
         <SideNav />
         <div className="content">{children}</div>
       </div>
+      <UserUpdate />
     </div>
   );
 };

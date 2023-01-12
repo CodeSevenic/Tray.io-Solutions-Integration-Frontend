@@ -31,6 +31,8 @@ export default class Login extends React.Component {
           // store user uuid for future credentials updates
           const text = await res.text();
           sessionStorage.setItem('userId', `${JSON.parse(text).userToken}`);
+          sessionStorage.setItem('name', `${JSON.parse(text).name}`);
+          sessionStorage.setItem('username', `${JSON.parse(text).username}`);
           // Auth
           auth.authenticate(() => {
             this.setState({

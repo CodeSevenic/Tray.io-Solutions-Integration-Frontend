@@ -86,7 +86,7 @@ export default class Login extends React.Component {
         <div className="left-content">
           <div className="text-stripe">
             <div className="logo-vertical">
-              <img src={YoboDataLogoV} alt="Logo Vertical" />
+              {/* <img src={YoboDataLogoV} alt="Logo Vertical" /> */}
             </div>
           </div>
         </div>

@@ -8,17 +8,15 @@ const UserUpdate = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const data = new FormData(e.target);
+    const formData = Object.fromEntries(data);
 
-    console.log('Handle submit');
-    console.log(e);
-    const data = new FormData();
-    data.append(name);
-    data.append(username);
-    data.append();
-    console.log("What's in the data: ", data);
     fetch('/api/update-credentials', {
       method: 'POST',
-      body: data,
+      body: JSON.stringify(formData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
   };
   const handleNameChange = (e) => {
@@ -38,6 +36,7 @@ const UserUpdate = () => {
           <header>UPDATE YOUR PASSWORD</header>
           <div className="form-group">
             <input
+              name="name"
               onChange={handleNameChange}
               type="text"
               className="form-control"
@@ -48,6 +47,7 @@ const UserUpdate = () => {
           </div>
           <div className="form-group">
             <input
+              name="username"
               onChange={handleUsernameChange}
               type="text"
               className="form-control"
@@ -58,12 +58,13 @@ const UserUpdate = () => {
           </div>
           <div className="form-group">
             <input
+              name="password"
               onChange={handlePasswordChange}
               type="password"
               className="form-control"
               placeholder="Enter new password"
               autoComplete="new-password"
-              value={password}
+              value={password || ''}
             />
           </div>
           <div>

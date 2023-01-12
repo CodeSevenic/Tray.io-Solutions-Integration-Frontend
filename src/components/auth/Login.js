@@ -14,7 +14,6 @@ export default class Login extends React.Component {
   };
 
   login = (data) => {
-    console.log(data);
     console.log('Logging in ' + data.username);
     this.setState({
       loading: true,
@@ -29,6 +28,7 @@ export default class Login extends React.Component {
     })
       .then((res) => {
         if (res.ok) {
+          console.log("Hey what's the response? ", res);
           auth.authenticate(() => {
             this.setState({
               redirectToReferrer: true,

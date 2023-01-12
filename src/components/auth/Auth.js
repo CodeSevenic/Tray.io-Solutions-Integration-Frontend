@@ -5,7 +5,6 @@ export const auth = {
   isAuthenticated: sessionStorage.getItem('userLogged') || false,
 
   authenticate(cb) {
-    console.log(cb);
     this.isAuthenticated = true;
     sessionStorage.setItem('userLogged', true);
 

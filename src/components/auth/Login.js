@@ -26,9 +26,12 @@ export default class Login extends React.Component {
         'Content-Type': 'application/json',
       },
     })
-      .then((res) => {
+      .then(async (res) => {
         if (res.ok) {
-          console.log("Hey what's the response? ", res);
+          // store user uuid for future credentials updates
+          const text = await res.text();
+          sessionStorage.setItem('userId', `${JSON.parse(text).userToken}`);
+          // Auth
           auth.authenticate(() => {
             this.setState({
               redirectToReferrer: true,

@@ -8,7 +8,9 @@ const UserUpdate = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const data = new FormData(e.target);
+    data.append('userId', sessionStorage.getItem('userId'));
     const formData = Object.fromEntries(data);
 
     fetch('/api/update-credentials', {
@@ -19,6 +21,7 @@ const UserUpdate = () => {
       },
     });
   };
+
   const handleNameChange = (e) => {
     setName(e.target.value);
   };

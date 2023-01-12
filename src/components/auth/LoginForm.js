@@ -61,7 +61,7 @@ class LoginForm extends React.Component {
               <Input
                 inputRef={(input) => (this.usernameElem = input)}
                 label="Username"
-                placeholder="user"
+                placeholder="username"
                 fullWidth={true}
                 className="login-input"
                 type="text"
@@ -71,10 +71,11 @@ class LoginForm extends React.Component {
                 inputRef={(input) => (this.passwordElem = input)}
                 style={{ marginTop: 10 }}
                 label="Password"
-                placeholder="pass"
+                placeholder="password"
                 fullWidth={true}
                 type="password"
                 className="login-input"
+                autoComplete="new-password"
               />
 
               <Button

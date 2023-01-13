@@ -102,3 +102,12 @@ export const YuboDataLogoDark = (props) => (
     <path className="cls-3" d="M49.18 22.2 37.16 34.36m-.23-.24L25.15 22.2" />
   </svg>
 );
+
+export function CloseIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path fill="none" d="M0 0h24v24H0z"></path>
+      <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"></path>
+    </svg>
+  );
+}

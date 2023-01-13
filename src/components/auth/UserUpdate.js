@@ -1,4 +1,5 @@
 ﻿import React, { useState } from 'react';
+import { CloseIcon } from '../svgs';
 import './UserUpdate.css';
 
 const UserUpdate = () => {
@@ -36,6 +37,7 @@ const UserUpdate = () => {
     return (
       <div className="user-update-form">
         <form onSubmit={handleSubmit}>
+          <CloseIcon />
           <header>UPDATE YOUR PASSWORD</header>
           <div className="form-group">
             <input

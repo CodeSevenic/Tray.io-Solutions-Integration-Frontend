@@ -14,6 +14,7 @@ const UserUpdate = () => {
 
   const { userEditModal, setUserEditModal } = useContext(AppContext);
   console.log(userEditModal);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 

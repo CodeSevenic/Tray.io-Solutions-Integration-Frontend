@@ -92,6 +92,7 @@ button.btn-update > img {
 
 .user-update-form.remove-modal {
   background-color: rgba(0, 0, 0, 0);
+  opacity: 0;
 }
 
 .modal-slide-away.slide-out {

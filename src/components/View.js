@@ -7,14 +7,18 @@ import { AppContext } from '../context';
 import './View.css';
 
 const View = ({ children }) => {
-  const { setUserEditModal } = useContext(AppContext);
+  const { userEditModal, setUserEditModal, hideModal, setHideModal } = useContext(AppContext);
+  const iconClickHandler = () => {
+    setUserEditModal(!userEditModal);
+    setHideModal(!hideModal);
+  };
   return (
     <div className="view-container">
       <header className="header header-bar">
         <div className="header-logo">
           <YuboDataLogoDark />
         </div>
-        <div onClick={setUserEditModal(true)} className="user-profile">
+        <div onClick={iconClickHandler} className="user-profile">
           <UserCog />
         </div>
       </header>

@@ -1,7 +1,8 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useContext, useState } from 'react';
 import { CloseIcon } from '../svgs';
 import './UserUpdate.css';
 import Loader from '../../img/animated-gif.gif';
+import { AppContext } from '../../context';
 
 const UserUpdate = () => {
   const [username, setUsername] = useState(sessionStorage.getItem('username'));
@@ -11,6 +12,8 @@ const UserUpdate = () => {
   const [openModal, setOpenModal] = useState(true);
   const [hideModal, setHideModal] = useState(true);
 
+  const { userEditModal, setUserEditModal } = useContext(AppContext);
+  console.log(userEditModal);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -52,6 +55,7 @@ const UserUpdate = () => {
   const updateForm = () => {
     return (
       <div
+        onClick={closeModalHandler}
         className={`user-update-form ${openModal ? '' : 'remove-modal'} ${
           hideModal ? '' : 'd-none'
         }`}

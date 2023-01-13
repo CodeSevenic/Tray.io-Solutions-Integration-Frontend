@@ -8,6 +8,8 @@ const UserUpdate = () => {
   const [name, setName] = useState(sessionStorage.getItem('name'));
   const [password, setPassword] = useState(sessionStorage.getItem(''));
   const [loading, setLoading] = useState(false);
+  const [openModal, setOpenModal] = useState(true);
+  const [hideModal, setHideModal] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,11 +41,28 @@ const UserUpdate = () => {
     setPassword(e.target.value);
   };
 
-  const signupForm = () => {
+  const closeModalHandler = () => {
+    setOpenModal(false);
+    setTimeout(function () {
+      setOpenModal(false);
+      setHideModal(true);
+    }, 2000);
+  };
+
+  const updateForm = () => {
     return (
-      <div className="user-update-form">
-        <form onSubmit={handleSubmit}>
-          <CloseIcon />
+      <div
+        className={`user-update-form ${openModal ? '' : 'remove-modal'} ${
+          hideModal ? '' : 'd-none'
+        }`}
+      >
+        <form
+          className={`modal-slide-away ${openModal ? '' : 'slide-out'}`}
+          onSubmit={handleSubmit}
+        >
+          <div onClick={() => closeModalHandler()} className="close-icon">
+            <CloseIcon />
+          </div>
           <header>UPDATE YOUR PASSWORD</header>
           <div className="form-group">
             <input
@@ -88,7 +107,7 @@ const UserUpdate = () => {
     );
   };
 
-  return <>{signupForm()}</>;
+  return <>{updateForm()}</>;
 };
 
 export default UserUpdate;

@@ -5,9 +5,10 @@
   bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.2);
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  transition: all 1s ease;
 }
 
 .user-update-form > form {
@@ -18,6 +19,8 @@
   gap: 10px;
   box-shadow: 0 0 10px -5px #000000;
   position: relative;
+  max-width: 350px;
+  align-items: center;
 }
 
 .user-update-form > form > header {
@@ -59,18 +62,42 @@ button.btn-update > img {
   min-width: 300px;
 }
 
-.user-update-form > form > svg {
-  fill: #fff !important;
+.user-update-form > form > .close-icon {
   position: absolute;
-  width: 24px;
-  background-color: #ea5a28;
-  border-radius: 50%;
   top: -10px;
   right: -10px;
   z-index: 10;
+  height: 24px;
+}
+
+.user-update-form > form > .close-icon > svg {
+  fill: #fff !important;
+  width: 24px;
+  background-color: #ea5a28;
+  border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.user-update-form > form > svg:hover {
+.user-update-form > form > .close-icon > svg:hover {
   background-color: #222832;
+}
+
+.modal-slide-away {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease-in-out;
+}
+
+.user-update-form.remove-modal {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.modal-slide-away.slide-out {
+  transform: translate(-50%, -500%);
+}
+
+.d-none {
+  display: none;
 }

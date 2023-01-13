@@ -45,8 +45,8 @@ const UserUpdate = () => {
     setOpenModal(false);
     setTimeout(function () {
       setOpenModal(false);
-      setHideModal(true);
-    }, 2000);
+      setHideModal(false);
+    }, 500);
   };
 
   const updateForm = () => {

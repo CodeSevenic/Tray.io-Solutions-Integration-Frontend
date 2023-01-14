@@ -11,15 +11,11 @@ const UserUpdate = () => {
   const [loading, setLoading] = useState(false);
 
   const { userEditModal, setUserEditModal, hideModal, setHideModal } = useContext(AppContext);
-  console.log('CONTEXT: ', userEditModal);
 
   const overlayRef = useRef(null);
 
-  console.log(overlayRef);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // e.stopPropagation();
     const data = new FormData(e.target);
     data.append('userId', sessionStorage.getItem('userId'));
     const formData = Object.fromEntries(data);

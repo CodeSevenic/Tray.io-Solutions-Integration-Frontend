@@ -70,3 +70,11 @@ export const getUsers = () =>
     ok: res.ok,
     body: await res.json(),
   }));
+
+export const deleteUser = (userId) =>
+  fetch(`/api/deleteUser/${userId}`, { method: 'POST', credentials: 'include' }).then(
+    async (res) => ({
+      ok: res.ok,
+      body: await res.json(),
+    })
+  );

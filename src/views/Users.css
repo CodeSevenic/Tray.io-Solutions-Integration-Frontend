@@ -14,6 +14,8 @@ section.user-section > h2 {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  overflow-y: scroll;
+  max-height: 70vh;
 }
 
 .solution-user {
@@ -56,7 +58,78 @@ section.user-section > h2 {
   text-decoration: none !important;
   transition: all 0.3s ease;
 }
+.btn-delete.cancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 10px 25px;
+  background-color: #57c4ee;
+  color: white;
+  cursor: pointer;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+}
+
+.btn-delete.cancel.okay {
+  margin: 0 auto;
+}
 
 .btn-delete:hover {
   background-color: #222832;
+}
+
+.confirmDelete {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(34, 40, 50, 0.314);
+}
+
+.confirmDelete > .form-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  transition: all 0.6s ease;
+}
+
+.confirmDelete > div form {
+  width: 100%;
+}
+
+.confirmDelete > div h4 {
+  margin-bottom: 20px;
+}
+
+.confirmDelete > div form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ea5a28;
+  border-radius: 5px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.confirmDelete.remove-modal {
+  background-color: rgba(0, 0, 0, 0);
+  opacity: 0;
+}
+
+.confirmDelete > .form-wrapper.slide-out {
+  transform: translate(-50%, -500%);
+}
+
+.d-none {
+  display: none;
 }

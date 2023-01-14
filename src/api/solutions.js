@@ -64,3 +64,9 @@ export const deleteSolutionInstance = (id) =>
   }).then(async (res) => ({
     ok: res.ok,
   }));
+
+export const getUsers = () =>
+  fetch(`/api/solutionUsers`, { credentials: 'include' }).then(async (res) => ({
+    ok: res.ok,
+    body: await res.json(),
+  }));

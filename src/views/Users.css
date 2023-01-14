@@ -1,0 +1,59 @@
+﻿section.user-section {
+  width: 100%;
+  margin: 20px 40px;
+}
+
+section.user-section > h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.users-container {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.solution-user {
+  display: flex;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px -5px #222832;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.solution-user:hover {
+  box-shadow: 0 0 20px -5px #222832;
+}
+
+.user-icon {
+  width: 50px;
+  height: 50px;
+}
+.user-icon svg {
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+
+.solution-user-info {
+  flex-grow: 1;
+}
+
+.btn-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 10px 25px;
+  background-color: #ea5a28;
+  color: white;
+  cursor: pointer;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+}
+
+.btn-delete:hover {
+  background-color: #222832;
+}

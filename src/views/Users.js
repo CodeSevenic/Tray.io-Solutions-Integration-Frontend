@@ -16,6 +16,10 @@ const Users = () => {
     });
   }, []);
 
+  const handleDeleteUser = (userId) => {
+    console.log(userId);
+  };
+
   return (
     <ViewAdmin>
       <section className="user-section">
@@ -31,7 +35,9 @@ const Users = () => {
                 <div className="solution-user-info">
                   <h3>{user.node.name}</h3>
                 </div>
-                <button className="btn-delete">DELETE</button>
+                <button onClick={() => handleDeleteUser(user.node.id)} className="btn-delete">
+                  DELETE
+                </button>
               </div>
             );
           })}

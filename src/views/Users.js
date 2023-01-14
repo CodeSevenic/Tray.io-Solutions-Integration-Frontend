@@ -76,6 +76,7 @@ const Users = () => {
   function closeModalHandler() {
     setDeleteModal(false);
     setTimeout(function () {
+      setDeleteSuccess(false);
       setOverlay(false);
       setDeleteModal(false);
     }, 500);
@@ -85,6 +86,7 @@ const Users = () => {
     if (e.target === overlayRef.current) {
       setDeleteModal(false);
       setTimeout(function () {
+        setDeleteSuccess(false);
         setOverlay(false);
         setDeleteModal(false);
       }, 500);

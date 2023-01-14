@@ -145,3 +145,29 @@ export function UserCog() {
     </svg>
   );
 }
+
+export function UserIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="800"
+      height="800"
+      viewBox="-0.08 0 20.162 20.162"
+    >
+      <g transform="translate(-2 -2)">
+        <path
+          fill="#2ca9bc"
+          d="M18.36 5.64A9 9 0 003 12v.32a9 9 0 004 7.18 5 5 0 015-4.5 4 4 0 114-4 4 4 0 01-4 4 5 5 0 015 4.48 9 9 0 004-7.18v-.32a9 9 0 00-2.64-6.34z"
+        ></path>
+        <path
+          fill="none"
+          stroke="#000"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M12 15a5 5 0 00-5 4.5 9 9 0 009.94 0A5 5 0 0012 15zm0-8a4 4 0 104 4 4 4 0 00-4-4zm0 14h0a9 9 0 01-9-9h0a9 9 0 019-9h0a9 9 0 019 9h0a9 9 0 01-9 9z"
+        ></path>
+      </g>
+    </svg>
+  );
+}

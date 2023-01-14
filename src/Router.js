@@ -9,7 +9,7 @@ import Account from './views/Account';
 import SolutionsMine from './views/SolutionsMine';
 import SolutionsDiscover from './views/SolutionsDiscover';
 import Authentications from './views/Authentications';
-import Users from './components/auth/Users';
+import Users from './views/Users';
 
 const App = () => (
   <Router>
@@ -20,7 +20,7 @@ const App = () => (
       {/* <Route path="/demo" component={Demo} /> */}
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
-      {/* <Route path="/admin/users" component={Users} /> */}
+      <Route path="/admin/users" component={Users} />
       <PrivateRoute path="/account" component={Account} />
       <PrivateRoute path="/solutions/discover" component={SolutionsDiscover} />
       <PrivateRoute path="/solutions/mine" component={SolutionsMine} />

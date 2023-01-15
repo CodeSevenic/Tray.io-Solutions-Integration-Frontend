@@ -28,15 +28,13 @@ div#root {
   height: 100vh;
 }
 
-.register-component,
 .login-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100vh;
 }
 
-.login-form .form-wrapper,
-.register-component .form-wrapper {
+.login-form .form-wrapper {
   position: relative !important;
   top: 50% !important;
   transform: translateY(-50%);
@@ -140,7 +138,6 @@ div svg {
     display: none;
   }
 
-  .register-component,
   .login-form {
     display: grid;
     grid-template-columns: unset;
@@ -150,15 +147,6 @@ div svg {
 @media screen and (max-width: 767px) {
   .form-wrapper * {
     min-width: 0 !important;
-  }
-
-  .register-component .form-wrapper * {
-    min-width: 0 !important;
-    width: unset !important;
-  }
-
-  .register-component .form-wrapper form * {
-    width: 100% !important;
   }
 
   .container {

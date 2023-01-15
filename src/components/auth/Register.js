@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import View from '../View';
 import RegisterForm from './RegisterForm';
+import './Register.css';
 
 const Register = () => {
   const [state, setState] = useState({
@@ -36,27 +37,13 @@ const Register = () => {
       });
   };
 
-  const explain =
-    'This will create a new in-memory user account in the local Express backend that will persist until the backend is restarted.';
-
   return (
     <View>
       <div className="register-component">
         <div className="form-wrapper">
           <div className="logo-wrapper"></div>
           <div className="form-content">
-            <h1 style={{ textAlign: 'center' }}>Register a New User</h1>
-            <div
-              style={{
-                textAlign: 'center',
-                width: '500px',
-                margin: 'auto',
-                paddingBottom: '10px',
-              }}
-            >
-              {explain}
-            </div>
-
+            <h1>Register a New User</h1>
             {state.error ? (
               <h3 style={{ color: 'red', textAlign: 'center' }}>Registration failed</h3>
             ) : (

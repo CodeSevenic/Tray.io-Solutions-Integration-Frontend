@@ -1,0 +1,20 @@
+﻿.btn-register {
+  display: block !important;
+  margin: 20px auto 0 auto !important;
+  text-align: center !important;
+}
+
+.register-form .register-form-wrapper {
+  background-color: white;
+  min-width: 320px;
+  max-width: 400px;
+  height: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 30px auto;
+}
+.register-form .register-form-wrapper .paper {
+  padding: 20px;
+  overflow: auto;
+}

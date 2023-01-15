@@ -4,45 +4,16 @@ import Button from '@material-ui/core/Button';
 import { white } from '@material-ui/core/colors/';
 import Input from '@material-ui/core/Input';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import './RegisterForm.css';
 
 class RegisterForm extends React.Component {
   render() {
     const { onRegister } = this.props;
-    const styles = {
-      loginContainer: {
-        backgroundColor: white,
-        minWidth: 320,
-        maxWidth: 400,
-        height: 'auto',
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        margin: '30px auto',
-      },
-      paper: {
-        padding: 20,
-        overflow: 'auto',
-      },
-      buttonsDiv: {
-        textAlign: 'center',
-        padding: 10,
-      },
-      field: {
-        marginTop: 10,
-      },
-      loginBtn: {
-        marginTop: 20,
-        float: 'right',
-      },
-      btnSpan: {
-        marginLeft: 5,
-      },
-    };
 
     return (
       <div className="register-form">
-        <div className="register-form-wrapper" style={styles.loginContainer}>
-          <Paper style={styles.paper}>
+        <div className="register-form-wrapper">
+          <Paper className="paper">
             {this.props.loading ? (
               <div style={{ textAlign: 'center' }}>
                 <CircularProgress />
@@ -69,6 +40,7 @@ class RegisterForm extends React.Component {
                   fullWidth={true}
                   style={{ marginBottom: 10 }}
                   required
+                  autoComplete="off"
                 />
 
                 <Input
@@ -78,6 +50,7 @@ class RegisterForm extends React.Component {
                   fullWidth={true}
                   style={{ marginBottom: 10 }}
                   required
+                  autoComplete="off"
                 />
 
                 <Input
@@ -87,9 +60,10 @@ class RegisterForm extends React.Component {
                   fullWidth={true}
                   type="password"
                   required
+                  autoComplete="new-password"
                 />
 
-                <Button style={styles.loginBtn} variant="raised" color="primary" type="submit">
+                <Button className="btn-register" variant="raised" color="primary" type="submit">
                   Register User
                 </Button>
               </form>

@@ -61,6 +61,14 @@ class RegisterForm extends React.Component {
                   required
                   autoComplete="new-password"
                 />
+                <Input
+                  className="admin-checkbox"
+                  inputRef={(input) => (this.passwordElem = input)}
+                  label="Make User Admin"
+                  fullWidth={true}
+                  type="checkbox"
+                  required
+                />
 
                 <Button className="btn-register" variant="raised" color="primary" type="submit">
                   Register User

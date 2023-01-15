@@ -102,3 +102,18 @@ button.btn-update > img {
 .d-none {
   display: none;
 }
+
+@media screen and (max-width: 480px) {
+  .user-update-form > form {
+    max-width: 280px;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .user-update-form > form > div > input {
+    border: 1px solid gray;
+    min-width: 100%;
+  }
+}

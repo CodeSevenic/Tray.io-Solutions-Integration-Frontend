@@ -10,23 +10,26 @@ import SolutionsMine from './views/SolutionsMine';
 import SolutionsDiscover from './views/SolutionsDiscover';
 import Authentications from './views/Authentications';
 import Users from './views/Users';
-
-const App = () => (
-  <Router>
-    <div className="app-container">
-      <Switch>
-        <RedirectMain exact from="/" />
-      </Switch>
-      {/* <Route path="/demo" component={Demo} /> */}
-      <Route path="/login" component={Login} />
-      <PrivateRoute path="/account" component={Account} />
-      <PrivateRoute path="/solutions/discover" component={SolutionsDiscover} />
-      <PrivateRoute path="/solutions/mine" component={SolutionsMine} />
-      <PrivateRoute path="/authentications" component={Authentications} />
-      <PrivateRoute path="/admin/users" component={Users} />
-      <Route path="/admin/register" component={Register} />
-    </div>
-  </Router>
-);
+const App = () => {
+  const currentPathname = window.location.pathname;
+  console.log(currentPathname);
+  return (
+    <Router>
+      <div className="app-container">
+        <Switch>
+          <RedirectMain exact from={`/`} />
+        </Switch>
+        {/* <Route path="/demo" component={Demo} /> */}
+        <Route path="/login" component={Login} />
+        <PrivateRoute path="/account" component={Account} />
+        <PrivateRoute path="/solutions/discover" component={SolutionsDiscover} />
+        <PrivateRoute path="/solutions/mine" component={SolutionsMine} />
+        <PrivateRoute path="/authentications" component={Authentications} />
+        <PrivateRoute path="/admin/users" component={Users} />
+        <Route path="/admin/register" component={Register} />
+      </div>
+    </Router>
+  );
+};
 
 export default App;

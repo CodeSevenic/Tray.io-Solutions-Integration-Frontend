@@ -18,6 +18,12 @@
   flex-grow: 1;
 }
 
+.header-logo > img {
+  display: none;
+  width: 40px;
+  height: 40px;
+}
+
 .header-logo svg {
   width: 300px;
 }
@@ -31,8 +37,24 @@
   cursor: pointer;
 }
 
+.header-bar .logout-button {
+  padding: 10px 20px;
+  text-transform: uppercase;
+  text-decoration: none !important;
+}
+.header-bar .logout-button:hover {
+  border: 1px solid #ea5a28 !important;
+}
+
 @media screen and (max-width: 480px) {
   .header-logo svg {
     width: 180px;
+    display: none;
+  }
+
+  .header-logo > img {
+    display: block;
+    width: 40px;
+    height: 40px;
   }
 }

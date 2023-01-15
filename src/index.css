@@ -30,10 +30,16 @@ button {
   border-radius: 0px;
   transition: all 0.3s ease;
   color: #ffffff !important;
+  border-radius: 0px !important;
+  border: none !important;
 }
 button:hover {
   background-color: #222832 !important;
   color: #32c1ff !important;
+}
+
+input[type='checkbox'] {
+  border: 1px solid #ea5a28 !important;
 }
 
 .view-container {

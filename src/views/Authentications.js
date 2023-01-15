@@ -173,7 +173,7 @@ export class Authentications extends React.PureComponent {
                 control={
                   <Checkbox
                     color="primary"
-                    value={this.state.shouldOpenInFrame}
+                    value={`${this.state.shouldOpenInFrame}`}
                     onChange={({ target: { checked } }) => {
                       this.setState({ shouldOpenInFrame: checked });
                     }}

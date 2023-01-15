@@ -24,3 +24,7 @@
   padding: 20px;
   overflow: auto;
 }
+
+form .admin-checkbox svg {
+  fill: #222832 !important;
+}

@@ -4,8 +4,13 @@ import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import './RegisterForm.css';
+import { Checkbox, FormControlLabel } from '@material-ui/core';
 
 class RegisterForm extends React.Component {
+  state = {
+    shouldOpenInFrame: false,
+  };
+
   render() {
     const { onRegister } = this.props;
 
@@ -61,13 +66,19 @@ class RegisterForm extends React.Component {
                   required
                   autoComplete="new-password"
                 />
-                <Input
+
+                <FormControlLabel
                   className="admin-checkbox"
-                  inputRef={(input) => (this.passwordElem = input)}
-                  label="Make User Admin"
-                  fullWidth={true}
-                  type="checkbox"
-                  required
+                  control={
+                    <Checkbox
+                      color="primary"
+                      value={`${this.state.shouldOpenInFrame}`}
+                      onChange={({ target: { checked } }) => {
+                        this.setState({ shouldOpenInFrame: checked });
+                      }}
+                    />
+                  }
+                  label="Make user admin"
                 />
 
                 <Button className="btn-register" variant="raised" color="primary" type="submit">

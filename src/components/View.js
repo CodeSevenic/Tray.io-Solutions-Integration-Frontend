@@ -32,7 +32,7 @@ const View = ({ children }) => {
 
   const onLogout = () => {
     sessionStorage.clear();
-    return (window.location = '/login');
+    return (window.location = '/');
   };
   return (
     <div className="view-container">

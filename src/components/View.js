@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import UserUpdate from './auth/UserUpdate';
 import SideNav from './SideNav';
 import { UserCog, YuboDataLogoDark } from './svgs';
@@ -13,6 +13,21 @@ const View = ({ children }) => {
     setUserEditModal(!userEditModal);
     setHideModal(!hideModal);
   };
+
+  const changePass = sessionStorage.getItem('chg');
+  console.log(changePass);
+
+  const isPassChanged = () => {
+    setTimeout(() => {
+      if (changePass === 'change-pass') {
+        iconClickHandler();
+      }
+    }, 2000);
+  };
+
+  useEffect(() => {
+    isPassChanged();
+  }, []);
 
   const onLogout = () => {
     sessionStorage.clear();

@@ -17,6 +17,8 @@ import './SideNav.css';
 
 const Nav = () => {
   const [solutionsOpen, setSolutionsOpen] = useState(true);
+  const admin = sessionStorage.getItem('adm');
+  console.log(admin);
 
   const handleSolutionsClick = () => {
     setSolutionsOpen(!solutionsOpen);
@@ -26,15 +28,16 @@ const Nav = () => {
     <div className="sideNav-wrapper">
       <div className="root">
         <List component="nav">
-          <Link to="/account" className="link">
-            <ListItem button>
-              <ListItemIcon>
-                <AccountIcon />
-              </ListItemIcon>
-              <ListItemText inset primary="Account" />
-            </ListItem>
-          </Link>
-
+          {admin === 'true' && (
+            <Link to="/account" className="link">
+              <ListItem button>
+                <ListItemIcon>
+                  <AccountIcon />
+                </ListItemIcon>
+                <ListItemText inset primary="Account" />
+              </ListItem>
+            </Link>
+          )}
           <Link to="/authentications" className="link">
             <ListItem button>
               <ListItemIcon>
@@ -43,22 +46,26 @@ const Nav = () => {
               <ListItemText inset primary="Authentications" />
             </ListItem>
           </Link>
-          <Link to="/admin/users" className="link">
-            <ListItem button>
-              <ListItemIcon>
-                <PeopleOutline />
-              </ListItemIcon>
-              <ListItemText inset primary="All users" />
-            </ListItem>
-          </Link>
-          <Link to="/admin/register" className="link">
-            <ListItem button>
-              <ListItemIcon>
-                <GroupAdd />
-              </ListItemIcon>
-              <ListItemText inset primary="Register New Users" />
-            </ListItem>
-          </Link>
+          {admin === 'true' && (
+            <Link to="/admin/users" className="link">
+              <ListItem button>
+                <ListItemIcon>
+                  <PeopleOutline />
+                </ListItemIcon>
+                <ListItemText inset primary="All users" />
+              </ListItem>
+            </Link>
+          )}
+          {admin === 'true' && (
+            <Link to="/admin/register" className="link">
+              <ListItem button>
+                <ListItemIcon>
+                  <GroupAdd />
+                </ListItemIcon>
+                <ListItemText inset primary="Register New Users" />
+              </ListItem>
+            </Link>
+          )}
 
           <ListItem button onClick={handleSolutionsClick}>
             <ListItemIcon>

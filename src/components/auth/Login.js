@@ -14,7 +14,6 @@ export default class Login extends React.Component {
   };
 
   login = (data) => {
-    console.log('Logging in ' + data.username);
     this.setState({
       loading: true,
     });
@@ -33,6 +32,8 @@ export default class Login extends React.Component {
           sessionStorage.setItem('userId', `${JSON.parse(text).userToken}`);
           sessionStorage.setItem('name', `${JSON.parse(text).name}`);
           sessionStorage.setItem('username', `${JSON.parse(text).username}`);
+          sessionStorage.setItem('adm', `${JSON.parse(text).adm}`);
+          sessionStorage.setItem('chg', `${JSON.parse(text).chg}`);
           // Auth
           auth.authenticate(() => {
             this.setState({

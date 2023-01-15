@@ -17,7 +17,7 @@ const App = () => {
     <Router>
       <div className="app-container">
         <Switch>
-          <RedirectMain exact from={`/`} />
+          <RedirectMain exact from={`*`} />
         </Switch>
         {/* <Route path="/demo" component={Demo} /> */}
         <Route path="/login" component={Login} />

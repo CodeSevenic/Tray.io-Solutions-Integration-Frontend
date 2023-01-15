@@ -31,7 +31,7 @@ class RegisterForm extends React.Component {
                     name: this.nameElem.value,
                     username: this.usernameElem.value,
                     password: this.passwordElem.value,
-                    admin: this.isAdminElem,
+                    admin: this.isAdminElem.value,
                   });
                 }}
               >
@@ -70,9 +70,9 @@ class RegisterForm extends React.Component {
 
                 <FormControlLabel
                   className="admin-checkbox"
+                  inputRef={(input) => (this.isAdminElem = input)}
                   control={
                     <Checkbox
-                      inputRef={(input) => (this.isAdminElem = input)}
                       color="primary"
                       value={`${this.state.isAdmin}`}
                       onChange={({ target: { checked } }) => {

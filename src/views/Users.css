@@ -65,7 +65,7 @@ section.user-section > h2 {
   justify-content: center;
   width: fit-content;
   padding: 10px 25px;
-  background-color: #57c4ee;
+  background-color: #57c4ee !important;
   color: white;
   cursor: pointer;
   text-decoration: none !important;
@@ -83,7 +83,7 @@ button.btn-delete > img {
 }
 
 .btn-delete:hover {
-  background-color: #222832;
+  background-color: #222832 !important;
 }
 
 .confirmDelete {

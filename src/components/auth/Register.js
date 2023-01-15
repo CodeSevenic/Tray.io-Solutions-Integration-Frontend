@@ -27,7 +27,7 @@ const Register = () => {
         if (response.ok) {
           setState({ ...state, success: true, loading: false });
 
-          setTimeout(() => (window.location = '/login'), 1000);
+          // setTimeout(() => (window.location = '/login'), 1000);
         } else {
           showError();
         }

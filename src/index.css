@@ -24,6 +24,18 @@ div#root {
   height: 100%;
 }
 
+button {
+  text-align: center;
+  background-color: #ea5a28 !important;
+  border-radius: 0px;
+  transition: all 0.3s ease;
+  color: #ffffff !important;
+}
+button:hover {
+  background-color: #222832 !important;
+  color: #32c1ff !important;
+}
+
 .view-container {
   height: 100vh;
 }

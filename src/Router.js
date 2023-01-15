@@ -19,12 +19,12 @@ const App = () => (
       </Switch>
       {/* <Route path="/demo" component={Demo} /> */}
       <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
-      <Route path="/admin/users" component={Users} />
       <PrivateRoute path="/account" component={Account} />
       <PrivateRoute path="/solutions/discover" component={SolutionsDiscover} />
       <PrivateRoute path="/solutions/mine" component={SolutionsMine} />
       <PrivateRoute path="/authentications" component={Authentications} />
+      <PrivateRoute path="/admin/users" component={Users} />
+      <Route path="/admin/register" component={Register} />
     </div>
   </Router>
 );

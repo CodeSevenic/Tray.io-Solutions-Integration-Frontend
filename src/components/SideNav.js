@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -8,6 +7,7 @@ import Collapse from '@material-ui/core/Collapse';
 import AccountIcon from '@material-ui/icons/AccountCircle';
 import AccountBox from '@material-ui/icons/AccountBox';
 import PeopleOutline from '@material-ui/icons/PeopleOutline';
+import GroupAdd from '@material-ui/icons/GroupAdd';
 import PlugIcon from '@material-ui/icons/SettingsInputComponent';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -49,6 +49,14 @@ const Nav = () => {
                 <PeopleOutline />
               </ListItemIcon>
               <ListItemText inset primary="All users" />
+            </ListItem>
+          </Link>
+          <Link to="/admin/register" className="link">
+            <ListItem button>
+              <ListItemIcon>
+                <GroupAdd />
+              </ListItemIcon>
+              <ListItemText inset primary="Register New Users" />
             </ListItem>
           </Link>
 

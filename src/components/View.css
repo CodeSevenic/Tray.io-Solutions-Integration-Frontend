@@ -46,7 +46,7 @@
   border: 1px solid #ea5a28 !important;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 767px) {
   .header-logo svg {
     width: 180px;
     display: none;

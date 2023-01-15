@@ -22,7 +22,7 @@ const View = ({ children }) => {
       if (changePass === 'change-pass') {
         iconClickHandler();
       }
-    }, 2000);
+    }, 5000);
   };
 
   useEffect(() => {

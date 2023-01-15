@@ -7,6 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import AccountIcon from '@material-ui/icons/AccountCircle';
 import AccountBox from '@material-ui/icons/AccountBox';
+import PeopleOutline from '@material-ui/icons/PeopleOutline';
 import PlugIcon from '@material-ui/icons/SettingsInputComponent';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -40,6 +41,14 @@ const Nav = () => {
                 <AccountBox />
               </ListItemIcon>
               <ListItemText inset primary="Authentications" />
+            </ListItem>
+          </Link>
+          <Link to="/admin/users" className="link">
+            <ListItem button>
+              <ListItemIcon>
+                <PeopleOutline />
+              </ListItemIcon>
+              <ListItemText inset primary="All users" />
             </ListItem>
           </Link>
 

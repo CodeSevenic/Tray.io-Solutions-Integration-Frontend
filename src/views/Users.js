@@ -1,7 +1,7 @@
 ﻿import React, { useEffect, useRef, useState } from 'react';
 import { deleteUser, getUsers } from '../api/solutions';
 import { UserIcon } from '../components/svgs';
-import ViewAdmin from '../components/ViewAdmin';
+import View from '../components/View';
 import Loader from '../img/animated-gif.gif';
 import './Users.css';
 
@@ -140,7 +140,7 @@ const Users = () => {
   };
 
   return (
-    <ViewAdmin>
+    <View>
       <section className="user-section">
         <h2>All #{userCount} Users </h2>
         <div className="users-container">
@@ -165,7 +165,7 @@ const Users = () => {
         </div>
         {confirmDelete()}
       </section>
-    </ViewAdmin>
+    </View>
   );
 };
 

@@ -1,26 +1,19 @@
-import React from 'react';
-import { baseUrl } from '../../urlConfig';
-import { MOLogo } from '../svgs';
+import React, { useState } from 'react';
+import View from '../View';
 import RegisterForm from './RegisterForm';
 
-export default class Register extends React.Component {
-  state = {
+const Register = () => {
+  const [state, setState] = useState({
     redirectToReferrer: false,
     error: false,
     success: false,
     loading: false,
-  };
+  });
 
-  showError = () =>
-    this.setState({
-      error: true,
-      loading: false,
-    });
+  const showError = () => setState({ ...state, error: true, loading: false });
 
-  register = (data) => {
-    this.setState({
-      loading: true,
-    });
+  const register = (data) => {
+    setState({ ...state, loading: true });
     fetch(`/api/register`, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -31,31 +24,26 @@ export default class Register extends React.Component {
     })
       .then((response) => {
         if (response.ok) {
-          this.setState({
-            success: true,
-            loading: false,
-          });
+          setState({ ...state, success: true, loading: false });
 
           setTimeout(() => (window.location = '/login'), 1000);
         } else {
-          this.showError();
+          showError();
         }
       })
       .catch((err) => {
-        this.showError();
+        showError();
       });
   };
 
-  explain =
+  const explain =
     'This will create a new in-memory user account in the local Express backend that will persist until the backend is restarted.';
 
-  render() {
-    return (
+  return (
+    <View>
       <div className="register-component">
         <div className="form-wrapper">
-          <div className="logo-wrapper">
-            <MOLogo />
-          </div>
+          <div className="logo-wrapper"></div>
           <div className="form-content">
             <h1 style={{ textAlign: 'center' }}>Register a New User</h1>
             <div
@@ -66,30 +54,25 @@ export default class Register extends React.Component {
                 paddingBottom: '10px',
               }}
             >
-              {this.explain}
+              {explain}
             </div>
 
-            {this.state.error ? (
+            {state.error ? (
               <h3 style={{ color: 'red', textAlign: 'center' }}>Registration failed</h3>
             ) : (
               ''
             )}
-            {this.state.success ? (
+            {state.success ? (
               <h3 style={{ color: 'green', textAlign: 'center' }}>Registration success</h3>
             ) : (
               ''
             )}
-            <RegisterForm onRegister={this.register} loading={this.state.loading} />
-          </div>
-        </div>
-        <div className="left-content">
-          <div className="text-stripe">
-            <div className="logo-vertical">
-              <img src="/MO-secondary-logo-colour.webp" alt="Logo Vertical" />
-            </div>
+            <RegisterForm onRegister={register} loading={state.loading} />
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </View>
+  );
+};
+
+export default Register;

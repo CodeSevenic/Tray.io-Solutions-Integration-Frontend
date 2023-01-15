@@ -21,6 +21,7 @@ const View = ({ children }) => {
     setTimeout(() => {
       if (changePass === 'change-pass') {
         iconClickHandler();
+        sessionStorage.removeItem('chg');
       }
     }, 5000);
   };

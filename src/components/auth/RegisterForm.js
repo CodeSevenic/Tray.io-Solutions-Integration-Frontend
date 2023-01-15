@@ -8,7 +8,7 @@ import { Checkbox, FormControlLabel } from '@material-ui/core';
 
 class RegisterForm extends React.Component {
   state = {
-    shouldOpenInFrame: false,
+    isAdmin: false,
   };
 
   render() {
@@ -31,6 +31,7 @@ class RegisterForm extends React.Component {
                     name: this.nameElem.value,
                     username: this.usernameElem.value,
                     password: this.passwordElem.value,
+                    admin: this.isAdminElem,
                   });
                 }}
               >
@@ -71,10 +72,11 @@ class RegisterForm extends React.Component {
                   className="admin-checkbox"
                   control={
                     <Checkbox
+                      inputRef={(input) => (this.isAdminElem = input)}
                       color="primary"
-                      value={`${this.state.shouldOpenInFrame}`}
+                      value={`${this.state.isAdmin}`}
                       onChange={({ target: { checked } }) => {
-                        this.setState({ shouldOpenInFrame: checked });
+                        this.setState({ isAdmin: checked });
                       }}
                     />
                   }

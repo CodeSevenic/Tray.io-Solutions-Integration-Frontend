@@ -83,12 +83,12 @@ const Account = () => {
           <div className="form-content">
             <h1>Update Account</h1>
             {state.error ? (
-              <h3 style={{ color: 'red', textAlign: 'center' }}>Registration failed</h3>
+              <h3 style={{ color: 'red', textAlign: 'center' }}>Update failed</h3>
             ) : (
               ''
             )}
             {state.success ? (
-              <h3 style={{ color: 'green', textAlign: 'center' }}>Registration success</h3>
+              <h3 style={{ color: 'green', textAlign: 'center' }}>Update success</h3>
             ) : (
               ''
             )}

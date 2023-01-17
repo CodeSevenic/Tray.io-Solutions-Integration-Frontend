@@ -1,70 +1,103 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import View from '../components/View';
 import Error from '../components/Error';
 import Typography from '@material-ui/core/Typography';
 import Loading from '../components/Loading';
 
 import { me } from '../api/me';
+import RegisterForm from '../components/auth/RegisterForm';
+import UpdateForm from '../components/auth/UpdateForm';
 
-export class Account extends React.PureComponent {
+const Account = () => {
+  const [state, setState] = useState({
+    redirectToReferrer: false,
+    error: false,
+    success: false,
+    loading: false,
+  });
 
-    state = {
-        loading: true,
-        error: false,
-        email: '',
-        username: '',
-        userInfo: {},
-    }
+  const showError = () => setState({ ...state, error: true, loading: false });
 
-    componentDidMount() {
-        me().then(({ok, body, statusText}) => {
-            if (ok) {
-                this.setState({
-                    username: body.username,
-                    email: body.email,
-                    loading: false,
-                });
-            } else {
-                this.setState({
-                    error: statusText,
-                    loading: false,
-                });
-            }
-        });
-    }
+  const update = (data) => {
+    setState({ ...state, loading: true });
+    fetch(`/api/register`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    })
+      .then((response) => {
+        if (response.ok) {
+          setState({ ...state, success: true, loading: false });
 
-    render() {
-        const style = {
-            bold: {
-                fontWeight: 'bold'
-            },
-        };
+          setTimeout(() => setState({ ...state, success: false }), 3000);
+        } else {
+          showError();
+        }
+      })
+      .catch((err) => {
+        showError();
+      });
+  };
 
-        return (
-            <View>
-                <Loading loading={this.state.loading}>
-                    {this.state.error ?
-                        <Error msg={this.state.error}/> :
-                        <div>
-                            <Typography variant="headline" style={{margin: "20px"}}>
-                                Your Tray account
-                            </Typography>
-                            <div style={{padding: "10px"}}>
-                                <div>
-                                    <span style={style.bold}>Tray username: </span>
-                                    {this.state.username}
-                                </div>
-                                <div>
-                                    <span style={style.bold}>Tray email: </span>
-                                    {this.state.email}
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </Loading>
-            </View>
-        );
-    }
-}
+  //   const [loading, setLoading] = useState(false);
+
+  const handleSubmit = (data) => {
+    setState({ ...state, loading: true });
+    // const data = new FormData(e.target);
+    // data.append('userId', sessionStorage.getItem('userId'));
+    // const formData = Object.fromEntries(data);
+
+    const newData = (data = { ...data, userId: sessionStorage.getItem('userId') });
+
+    // console.log(JSON.stringify(newData));
+
+    fetch('/api/update-credentials', {
+      method: 'POST',
+      body: JSON.stringify(newData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          setState({ ...state, success: true, loading: false });
+
+          setTimeout(() => setState({ ...state, success: false }), 3000);
+        } else {
+          showError();
+        }
+      })
+      .catch((err) => {
+        showError();
+      });
+  };
+
+  return (
+    <View>
+      <div className="register-component">
+        <div className="form-wrapper">
+          <div className="logo-wrapper"></div>
+          <div className="form-content">
+            <h1>Update Account</h1>
+            {state.error ? (
+              <h3 style={{ color: 'red', textAlign: 'center' }}>Registration failed</h3>
+            ) : (
+              ''
+            )}
+            {state.success ? (
+              <h3 style={{ color: 'green', textAlign: 'center' }}>Registration success</h3>
+            ) : (
+              ''
+            )}
+            <UpdateForm onUpdate={handleSubmit} loading={state.loading} />
+          </div>
+        </div>
+      </div>
+    </View>
+  );
+};
 
 export default Account;

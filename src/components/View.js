@@ -44,9 +44,9 @@ const View = ({ children }) => {
         <button onClick={onLogout} className="logout-button">
           Logout
         </button>
-        <div onClick={iconClickHandler} className="user-profile">
+        {/* <div onClick={iconClickHandler} className="user-profile">
           <UserCog />
-        </div>
+        </div> */}
       </header>
       <div className="container">
         <SideNav />

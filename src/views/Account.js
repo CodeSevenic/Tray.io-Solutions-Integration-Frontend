@@ -18,41 +18,10 @@ const Account = () => {
 
   const showError = () => setState({ ...state, error: true, loading: false });
 
-  const update = (data) => {
-    setState({ ...state, loading: true });
-    fetch(`/api/register`, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-    })
-      .then((response) => {
-        if (response.ok) {
-          setState({ ...state, success: true, loading: false });
-
-          setTimeout(() => setState({ ...state, success: false }), 3000);
-        } else {
-          showError();
-        }
-      })
-      .catch((err) => {
-        showError();
-      });
-  };
-
-  //   const [loading, setLoading] = useState(false);
-
   const handleSubmit = (data) => {
     setState({ ...state, loading: true });
-    // const data = new FormData(e.target);
-    // data.append('userId', sessionStorage.getItem('userId'));
-    // const formData = Object.fromEntries(data);
 
     const newData = (data = { ...data, userId: sessionStorage.getItem('userId') });
-
-    // console.log(JSON.stringify(newData));
 
     fetch('/api/update-credentials', {
       method: 'POST',

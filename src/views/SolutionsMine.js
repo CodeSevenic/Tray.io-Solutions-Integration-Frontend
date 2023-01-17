@@ -46,11 +46,7 @@ export class SolutionsMine extends React.PureComponent {
 
   buildList(solutionInstances) {
     return (
-      // <div cla>
       <div className="solutions-list" style={this.styles.list}>
-        {/* <Typography variant="headline" style={{ margin: '20px 0' }}>
-          My Solution Instances
-        </Typography> */}
         {solutionInstances.length === 0 ? (
           <Typography variant="headline" style={{ margin: '20px 0' }}>
             Your have not initiated a solution yet 😒
@@ -70,7 +66,6 @@ export class SolutionsMine extends React.PureComponent {
           />
         ))}
       </div>
-      // </div>
     );
   }
 

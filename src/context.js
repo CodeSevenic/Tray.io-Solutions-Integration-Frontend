@@ -13,5 +13,5 @@ export const UserContextProvider = ({ children }) => {
     setHideModal,
   };
 
-  // return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

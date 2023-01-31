@@ -84,7 +84,6 @@ class UpdateForm extends React.Component {
                   type="password"
                   required
                   autoComplete="new-password"
-                  value={this.state.password}
                   onChange={this.handlePasswordChange}
                 />
 

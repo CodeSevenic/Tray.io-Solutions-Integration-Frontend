@@ -175,7 +175,8 @@ export class Instance extends React.PureComponent {
               >
                 Delete
               </Button>
-              <Typography variant="title">Create auth</Typography>
+
+              {/* <Typography variant="title">Create auth</Typography>
               <TextField
                 style={styles.textFields}
                 label="Auth external id"
@@ -202,7 +203,7 @@ export class Instance extends React.PureComponent {
                 disabled={!this.state.authExternalId}
               >
                 Create auth
-              </Button>
+              </Button> */}
             </div>
             {configWizardSrc && <ConfigWizard src={configWizardSrc} onClose={this.closeIframe} />}
           </ExpansionPanelDetails>

@@ -134,6 +134,17 @@ div svg {
   flex-wrap: wrap;
 }
 
+.authButtons > button {
+  min-width: 120px;
+  padding: 0px !important;
+  line-height: normal !important;
+  min-height: 48px !important;
+}
+
+div > div > div > #Controls {
+  margin: 0 !important;
+}
+
 .content {
   width: 100%;
   display: flex;

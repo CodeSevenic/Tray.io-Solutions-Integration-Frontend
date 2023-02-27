@@ -32,6 +32,7 @@ button {
   color: #ffffff !important;
   border-radius: 0px !important;
   border: none !important;
+  border-radius: 2px !important;
 }
 button:hover {
   background-color: #222832 !important;
@@ -143,6 +144,11 @@ div svg {
 
 div > div > div > #Controls {
   margin: 0 !important;
+}
+
+.authButtons label span span svg {
+  fill: #545454 !important;
+  background: white;
 }
 
 .content {

@@ -78,7 +78,7 @@ export default class Login extends React.Component {
       <div className="login-form">
         <div className="form-wrapper">
           <div className="logo-wrapper">
-            <img width={150} height={150} src={Logo} alt="YuboData Logo" />
+            <img width={140} height={140} src={Logo} alt="YuboData Logo" />
           </div>
           <Loading loading={this.state.loading}>
             <LoginForm onLogin={this.login} />

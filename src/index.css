@@ -93,6 +93,8 @@ input[type='checkbox'] {
 
 .logo-vertical > img {
   width: 100%;
+  height: 171px;
+  object-fit: contain;
 }
 
 .MuiButton-textSecondary-70,

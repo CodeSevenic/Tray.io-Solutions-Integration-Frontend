@@ -159,7 +159,7 @@ export class Authentications extends React.PureComponent {
                 Refresh
                 <RefreshIcon />
               </Button>
-              <TextField
+              {/* <TextField
                 id="params"
                 label="Advanced Url Params"
                 value={this.state.params}
@@ -168,8 +168,8 @@ export class Authentications extends React.PureComponent {
                   shrink: true,
                 }}
                 style={this.styles.advancedInput}
-              />
-              <FormControlLabel
+              /> */}
+              {/* <FormControlLabel
                 control={
                   <Checkbox
                     color="primary"
@@ -180,7 +180,7 @@ export class Authentications extends React.PureComponent {
                   />
                 }
                 label="Open in iframe"
-              />
+              /> */}
             </div>
           </Grid>
           {this.state.error ? (

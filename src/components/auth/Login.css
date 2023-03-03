@@ -18,6 +18,10 @@
   box-shadow: 0 0px 14px -8px #222832 !important;
 }
 
+.form-div div div h1 {
+  font-size: 1rem !important;
+}
+
 .form-div > div > div .login-button {
   display: block;
   margin: 20px auto 0 auto !important;

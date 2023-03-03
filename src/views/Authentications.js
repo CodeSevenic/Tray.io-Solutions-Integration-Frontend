@@ -8,7 +8,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withTheme } from '@material-ui/core/styles/index';
 import Loading from '../components/Loading';
-import { listAuths, getAuthEditUrl } from '../api/me';
+import { listAuths, getAuthEditUrl, deleteAuth } from '../api/me';
 import { openAuthWindow } from '../lib/authWindow';
 import { getAuthCreateUrl } from '../api/me';
 import List from '@material-ui/core/List';
@@ -63,6 +63,7 @@ export class Authentications extends React.PureComponent {
       },
       () => {
         listAuths().then(({ ok, body }) => {
+          // console.log('Auths: ', body.data);
           if (ok) {
             this.setState({
               auths: body.data || [],
@@ -98,6 +99,14 @@ export class Authentications extends React.PureComponent {
     });
   };
 
+  deleteAuthHandler = (id) => {
+    deleteAuth(id).then(({ ok, body }) => {
+      if (ok) {
+        this.loadAuths();
+      }
+    });
+  };
+
   buildList() {
     return (
       <Paper>
@@ -106,8 +115,21 @@ export class Authentications extends React.PureComponent {
             {this.state.auths.map(({ id, name }, index) => (
               <ListItem divider={index !== this.state.auths.length - 1} key={index}>
                 <ListItemText style={this.styles.text} primary={name} secondary={null} />
-                <ListItemSecondaryAction onClick={this.showAuthWindow(id)}>
-                  <Button style={this.styles.button} variant="outlined" color="primary">
+                <ListItemSecondaryAction className="auth-action-btns">
+                  <Button
+                    onClick={() => this.deleteAuthHandler(id)}
+                    style={this.styles.button}
+                    variant="outlined"
+                    color="primary"
+                  >
+                    Remove
+                  </Button>{' '}
+                  <Button
+                    onClick={this.showAuthWindow(id)}
+                    style={this.styles.button}
+                    variant="outlined"
+                    color="primary"
+                  >
                     Edit
                   </Button>
                 </ListItemSecondaryAction>

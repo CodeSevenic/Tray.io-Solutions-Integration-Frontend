@@ -43,3 +43,19 @@ export const getAuthCreateUrl = (solutionInstanceId, externalAuthId) =>
     ok: res.ok,
     body: await res.json(),
   }));
+
+// Delete Authentication
+export const deleteAuth = (authId) =>
+  fetch(`/api/deleteAuth`, {
+    body: JSON.stringify({
+      authId,
+    }),
+    headers: {
+      'content-type': 'application/json',
+    },
+    method: 'POST',
+    credentials: 'include',
+  }).then(async (res) => ({
+    ok: res.ok,
+    body: await res.json(),
+  }));

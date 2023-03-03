@@ -75,7 +75,7 @@ const Nav = () => {
             {solutionsOpen ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
 
-          <Collapse in={solutionsOpen} timeout="auto" unmountOnExit>
+          <Collapse className="yubo-side-dropdown" in={solutionsOpen} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <Link className="link" to="/solutions/mine">
                 <ListItem button className="nested">

@@ -13,3 +13,8 @@
 .nested {
   padding-left: 20px;
 }
+
+.yubo-side-dropdown div div div a div svg {
+  fill: #2c3340 !important;
+  visibility: hidden;
+}

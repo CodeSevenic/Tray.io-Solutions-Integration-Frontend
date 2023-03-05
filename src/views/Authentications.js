@@ -62,7 +62,7 @@ export class Authentications extends React.PureComponent {
         loading: true,
       },
       () => {
-        // listAuths().then(({ ok, body }) => {
+        listAuths().then(({ ok, body }) => {
           // console.log('Auths: ', body.data);
           if (ok) {
             this.setState({

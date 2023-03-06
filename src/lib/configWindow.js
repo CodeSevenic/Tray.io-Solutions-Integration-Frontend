@@ -12,12 +12,10 @@ export const openConfigWindow = () => {
 
     if (e.data.type === 'tray.configPopup.error') {
       // Handle popup error message
-      popupWindowMessage = 'Error';
       alert(`Error: ${e.data.err}`);
       configWindow.close();
     }
     if (e.data.type === 'tray.configPopup.cancel') {
-      popupWindowMessage = 'Cancel';
       configWindow.close();
     }
     if (e.data.type === 'tray.configPopup.finish') {

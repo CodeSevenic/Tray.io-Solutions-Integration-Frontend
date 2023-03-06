@@ -1,5 +1,4 @@
-export let configFinished = false;
-export let popupWindowMessage = '';
+let configFinished = false;
 
 export const openConfigWindow = () => {
   // Must open window from user interaction code otherwise it is likely
@@ -20,12 +19,10 @@ export const openConfigWindow = () => {
     }
     if (e.data.type === 'tray.configPopup.finish') {
       // Handle popup finish message
-      popupWindowMessage = 'Finish';
       configFinished = true;
       configWindow.close();
     }
     if (e.data.type === 'tray.configPopup.validate') {
-      popupWindowMessage = 'Validate';
       // Return validation in progress
       configWindow.postMessage(
         {

@@ -14,18 +14,16 @@ export const openConfigWindow = () => {
 
     if (e.data.type === 'tray.configPopup.error') {
       // Handle popup error message
-      deleteSolutionInstance(e?.data?.data?.solutionInstanceId)
-        .then
-        // console.log('Instance not finished then deleted.')
-        ();
+      deleteSolutionInstance(e?.data?.data?.solutionInstanceId).then(
+        console.log('Instance not finished then deleted.')
+      );
       alert(`Error: ${e.data.err}`);
       configWindow.close();
     }
     if (e.data.type === 'tray.configPopup.cancel') {
-      deleteSolutionInstance(e?.data?.data?.solutionInstanceId)
-        .then
-        // console.log('Instance not finished then deleted.')
-        ();
+      deleteSolutionInstance(e?.data?.data?.solutionInstanceId).then(
+        console.log('Instance not finished then deleted.')
+      );
       configWindow.close();
     }
     if (e.data.type === 'tray.configPopup.finish') {

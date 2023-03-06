@@ -43,6 +43,7 @@ export class SolutionsDiscover extends React.PureComponent {
     createSolutionInstance(id, name).then(({ body }) => {
       // After we generate the popup URL, set it to the previously opened
       // window:
+      console.log('POP: ', body);
       configWindow.location = body.data.popupUrl;
     });
   }

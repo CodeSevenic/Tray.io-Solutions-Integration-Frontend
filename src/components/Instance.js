@@ -125,6 +125,10 @@ export class Instance extends React.PureComponent {
       },
     };
 
+    updateSolutionInstance(this.props.id, true).then(() => {
+      this.setState({ instanceState: true });
+    });
+
     return (
       <Loading loading={this.state.loading}>
         <ExpansionPanel key={id} style={styles.item}>

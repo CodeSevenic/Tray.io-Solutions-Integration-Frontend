@@ -12,7 +12,6 @@ import Authentications from './views/Authentications';
 import Users from './views/Users';
 const App = () => {
   const currentPathname = window.location.pathname;
-  console.log(currentPathname);
   return (
     <Router>
       <div className="app-container">

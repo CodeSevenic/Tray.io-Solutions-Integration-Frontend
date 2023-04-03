@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Loading from '../components/Loading';
+import { withRouter } from 'react-router-dom';
 
 import { openConfigWindow } from '../lib/configWindow';
 import { listSolutions, createSolutionInstance } from '../api/solutions';
@@ -36,15 +37,19 @@ export class SolutionsDiscover extends React.PureComponent {
       }
     });
   }
-
   onUseWorkflowClick(id, name) {
-    const configWindow = openConfigWindow();
+    const { history } = this.props;
+    const configWindow = openConfigWindow(() => {
+      // Redirect to a new route when the configuration is finished
+      history.push('/solutions/mine'); // Replace '/desired-route' with the path where you want to redirect.
+    });
 
     createSolutionInstance(id, name).then(({ body }) => {
       // After we generate the popup URL, set it to the previously opened
       // window:
-      console.log('POP: ', body);
+      // console.log('POP: ', body);
       configWindow.location = body.data.popupUrl;
+      // Redirect to a new route
     });
   }
 
@@ -103,4 +108,4 @@ export class SolutionsDiscover extends React.PureComponent {
   }
 }
 
-export default SolutionsDiscover;
+export default withRouter(SolutionsDiscover);

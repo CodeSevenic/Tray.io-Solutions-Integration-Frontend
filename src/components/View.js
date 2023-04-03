@@ -15,7 +15,6 @@ const View = ({ children }) => {
   };
 
   const changePass = sessionStorage.getItem('chg');
-  console.log(changePass);
 
   const isPassChanged = () => {
     setTimeout(() => {

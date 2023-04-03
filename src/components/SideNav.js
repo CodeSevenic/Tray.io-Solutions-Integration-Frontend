@@ -18,7 +18,6 @@ import './SideNav.css';
 const Nav = () => {
   const [solutionsOpen, setSolutionsOpen] = useState(true);
   const admin = sessionStorage.getItem('adm');
-  console.log(admin);
 
   const handleSolutionsClick = () => {
     setSolutionsOpen(!solutionsOpen);

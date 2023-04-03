@@ -1,8 +1,10 @@
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { deleteSolutionInstance } from '../api/solutions';
 
 let configFinished = false;
 
-export const openConfigWindow = () => {
+export const openConfigWindow = (onFinishCallback) => {
   // Must open window from user interaction code otherwise it is likely
   // to be blocked by a popup blocker:
   const configWindow = window.open(undefined, '_blank', 'width=500,height=500,scrollbars=no');
@@ -29,7 +31,11 @@ export const openConfigWindow = () => {
     if (e.data.type === 'tray.configPopup.finish') {
       // Handle popup finish message
       configFinished = true;
+
       configWindow.close();
+      if (typeof onFinishCallback === 'function') {
+        onFinishCallback();
+      }
     }
     if (e.data.type === 'tray.configPopup.validate') {
       // Return validation in progress

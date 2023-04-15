@@ -4,7 +4,7 @@ import { deleteSolutionInstance } from '../api/solutions';
 
 let configFinished = false;
 
-export const openConfigWindow = (onFinishCallback) => {
+export const openConfigWindow = (onFinishCallback, setConfigFinished = () => {}) => {
   // Must open window from user interaction code otherwise it is likely
   // to be blocked by a popup blocker:
   const configWindow = window.open(undefined, '_blank', 'width=500,height=500,scrollbars=no');
@@ -20,17 +20,20 @@ export const openConfigWindow = (onFinishCallback) => {
         console.log('Instance not finished then deleted.')
       );
       alert(`Error: ${e.data.err}`);
+      setConfigFinished(false);
       configWindow.close();
     }
     if (e.data.type === 'tray.configPopup.cancel') {
       deleteSolutionInstance(e?.data?.data?.solutionInstanceId).then(
         console.log('Instance not finished then deleted.')
       );
+      setConfigFinished(false);
       configWindow.close();
     }
     if (e.data.type === 'tray.configPopup.finish') {
       // Handle popup finish message
       configFinished = true;
+      setConfigFinished(true);
 
       configWindow.close();
       if (typeof onFinishCallback === 'function') {

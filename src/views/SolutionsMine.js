@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import View from '../components/View';
 import Error from '../components/Error';
 import Typography from '@material-ui/core/Typography';
@@ -6,10 +6,11 @@ import { withTheme } from '@material-ui/core/styles/index';
 import Loading from '../components/Loading';
 import Instance from '../components/Instance';
 
-import { listSolutionInstances } from '../api/solutions';
+import { listSolutionInstances, updateSolutionInstance } from '../api/solutions';
+import { AppContext } from '../context';
 
-export class SolutionsMine extends React.PureComponent {
-  styles = {
+const SolutionsMine = () => {
+  const styles = {
     list: {
       maxWidth: '1000px',
       margin: 'auto',
@@ -18,35 +19,31 @@ export class SolutionsMine extends React.PureComponent {
     },
   };
 
-  state = {
-    loading: true,
-    error: false,
-    solutionInstances: [],
-  };
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [solutionInstances, setSolutionInstances] = useState([]);
 
-  componentDidMount() {
-    this.loadAllSolutionInstances();
-  }
+  useEffect(() => {
+    loadAllSolutionInstances();
+  }, []);
 
-  loadAllSolutionInstances = () => {
+  const loadAllSolutionInstances = () => {
     listSolutionInstances().then(({ ok, body }) => {
       if (ok) {
-        this.setState({
-          solutionInstances: body.data,
-          loading: false,
-        });
+        setSolutionInstances(body.data);
+        setLoading(false);
       } else {
-        this.setState({
-          error: body,
-          loading: false,
-        });
+        setError(body);
+        setLoading(false);
       }
     });
   };
 
-  buildList(solutionInstances) {
+  const { setConfigFinished, configFinished } = useContext(AppContext);
+
+  const buildList = (solutionInstances) => {
     return (
-      <div className="solutions-list" style={this.styles.list}>
+      <div className="solutions-list" style={styles.list}>
         {solutionInstances.length === 0 ? (
           <Typography variant="headline" style={{ margin: '20px 0' }}>
             Your have not initiated a solution yet 😒
@@ -56,32 +53,33 @@ export class SolutionsMine extends React.PureComponent {
             My Solution Instances
           </Typography>
         )}
-        {solutionInstances.map(({ id, name, enabled }) => (
-          <Instance
-            id={id}
-            key={id}
-            name={name}
-            enabled={enabled}
-            loadAllSolutionInstances={this.loadAllSolutionInstances}
-          />
-        ))}
+        {solutionInstances.map(({ id, name, enabled }, index) => {
+          let isLast = 'NO';
+          if (index === solutionInstances.length - 1) {
+            isLast = 'YES';
+          }
+          return (
+            <Instance
+              id={id}
+              key={id}
+              name={name}
+              last={isLast}
+              enabled={enabled}
+              loadAllSolutionInstances={loadAllSolutionInstances}
+            />
+          );
+        })}
       </div>
     );
-  }
+  };
 
-  render() {
-    return (
-      <View>
-        <Loading loading={this.state.loading}>
-          {this.state.error ? (
-            <Error msg={this.state.error} />
-          ) : (
-            this.buildList(this.state.solutionInstances)
-          )}
-        </Loading>
-      </View>
-    );
-  }
-}
+  return (
+    <View>
+      <Loading loading={loading}>
+        {error ? <Error msg={error} /> : buildList(solutionInstances)}
+      </Loading>
+    </View>
+  );
+};
 
 export default withTheme()(SolutionsMine);

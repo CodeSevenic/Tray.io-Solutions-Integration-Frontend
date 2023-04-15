@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import View from '../components/View';
 import Error from '../components/Error';
 import List from '@material-ui/core/List';
@@ -13,47 +13,43 @@ import Loading from '../components/Loading';
 import { withRouter } from 'react-router-dom';
 
 import { openConfigWindow } from '../lib/configWindow';
-import { listSolutions, createSolutionInstance } from '../api/solutions';
+import { listSolutions, createSolutionInstance, updateSolutionInstance } from '../api/solutions';
+import { AppContext } from '../context';
 
-export class SolutionsDiscover extends React.PureComponent {
-  state = {
-    loading: true,
-    error: false,
-    solutions: [],
-  };
+const SolutionsDiscover = (props) => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [solutions, setSolutions] = useState([]);
+  const { setConfigFinished, configFinished } = useContext(AppContext);
 
-  componentDidMount() {
+  console.log('Solutions Discover');
+
+  useEffect(() => {
     listSolutions().then(({ ok, body }) => {
       if (ok) {
-        this.setState({
-          solutions: body.data,
-          loading: false,
-        });
+        setSolutions(body.data);
+        setLoading(false);
       } else {
-        this.setState({
-          error: body,
-          loading: false,
-        });
+        setError(body);
+        setLoading(false);
       }
     });
-  }
-  onUseWorkflowClick(id, name) {
-    const { history } = this.props;
+  }, []);
+
+  const onUseWorkflowClick = (id, name) => {
+    const { history } = props;
     const configWindow = openConfigWindow(() => {
-      // Redirect to a new route when the configuration is finished
-      history.push('/solutions/mine'); // Replace '/desired-route' with the path where you want to redirect.
-    });
+      history.push('/solutions/mine');
+    }, setConfigFinished(true));
 
     createSolutionInstance(id, name).then(({ body }) => {
-      // After we generate the popup URL, set it to the previously opened
-      // window:
-      // console.log('POP: ', body);
       configWindow.location = body.data.popupUrl;
-      // Redirect to a new route
     });
-  }
+  };
 
-  buildList(solutions) {
+  console.log('Hello: ', configFinished);
+
+  const buildList = (solutions) => {
     const styles = {
       controls: { marginLeft: '20px' },
       button: { width: '100%' },
@@ -80,7 +76,7 @@ export class SolutionsDiscover extends React.PureComponent {
             {solutions.map(({ title, id }, index) => (
               <ListItem divider={index !== solutions.length - 1} key={index}>
                 <ListItemText style={styles.text} primary={title} secondary={null} />
-                <ListItemSecondaryAction onClick={() => this.onUseWorkflowClick(id, title)}>
+                <ListItemSecondaryAction onClick={() => onUseWorkflowClick(id, title)}>
                   <Button style={styles.button} variant="outlined" color="primary">
                     Use
                   </Button>
@@ -91,21 +87,13 @@ export class SolutionsDiscover extends React.PureComponent {
         </Paper>
       </Grid>
     );
-  }
+  };
 
-  render() {
-    return (
-      <View>
-        <Loading loading={this.state.loading}>
-          {this.state.error ? (
-            <Error msg={this.state.error} />
-          ) : (
-            this.buildList(this.state.solutions)
-          )}
-        </Loading>
-      </View>
-    );
-  }
-}
+  return (
+    <View>
+      <Loading loading={loading}>{error ? <Error msg={error} /> : buildList(solutions)}</Loading>
+    </View>
+  );
+};
 
 export default withRouter(SolutionsDiscover);

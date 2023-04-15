@@ -5,7 +5,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 import { withTheme } from '@material-ui/core/styles/index';
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import Loading from './Loading';
 import { get } from 'lodash';
 
@@ -20,19 +20,20 @@ import { ConfigWizard } from './ConfigWizard';
 import TextField from '@material-ui/core/TextField';
 import { getAuthCreateUrl } from '../api/me';
 import { openAuthWindow } from '../lib/authWindow';
+import { AppContext } from '../context';
 
-export class Instance extends React.PureComponent {
-  state = {
-    error: false,
-    loading: false,
-    instanceState: undefined,
-    configWizardSrc: undefined,
-    authExternalId: undefined,
-    authUrlParams: '',
-  };
+const Instance = ({ id, name, enabled, loadAllSolutionInstances, last }) => {
+  const { setConfigFinished, configFinished } = useContext(AppContext);
 
-  openWizard = (openInIframe, addCustomValidation = false) => {
-    updateSolutionInstanceConfig(this.props.id).then(({ body }) => {
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [instanceState, setInstanceState] = useState(undefined);
+  const [configWizardSrc, setConfigWizardSrc] = useState(undefined);
+  const [authExternalId, setAuthExternalId] = useState(undefined);
+  const [authUrlParams, setAuthUrlParams] = useState('');
+
+  const openWizard = (openInIframe, addCustomValidation = false) => {
+    updateSolutionInstanceConfig(id).then(({ body }) => {
       const url = addCustomValidation
         ? `${body.data.popupUrl}&customValidation=true`
         : body.data.popupUrl;
@@ -41,115 +42,117 @@ export class Instance extends React.PureComponent {
         const configWindow = openConfigWindow();
         configWindow.location = url;
       } else {
-        this.setState({
-          configWizardSrc: url,
-        });
+        setConfigWizardSrc(url);
       }
     });
   };
 
-  onClickConfigure = () => {
-    this.openWizard(false, false);
+  const onClickConfigure = () => {
+    openWizard(false, false);
   };
 
-  onClickConfigureWithValidation = () => {
-    this.openWizard(false, true);
+  const onClickConfigureWithValidation = () => {
+    openWizard(false, true);
   };
 
-  onClickConfigureInIframe = () => {
-    this.openWizard(true, false);
+  const onClickConfigureInIframe = () => {
+    openWizard(true, false);
   };
 
-  onClickEnable = () => {
-    const enabled = get(this.state, 'instanceState', this.props.enabled);
-    updateSolutionInstance(this.props.id, !enabled).then(() => {
-      this.setState({ instanceState: !enabled });
+  const onClickEnable = () => {
+    const currentState = instanceState !== undefined ? instanceState : enabled;
+    updateSolutionInstance(id, !currentState).then(() => {
+      setInstanceState(!currentState);
     });
   };
 
-  onClickDelete = () => {
-    deleteSolutionInstance(this.props.id).then(this.props.loadAllSolutionInstances);
+  const onClickDelete = () => {
+    deleteSolutionInstance(id).then(loadAllSolutionInstances);
   };
 
-  closeIframe = () => {
-    this.setState({
-      configWizardSrc: undefined,
+  const closeIframe = () => {
+    setConfigWizardSrc(undefined);
+  };
+
+  const onCreateAuth = () => {
+    getAuthCreateUrl(id, authExternalId).then(({ body }) => {
+      openAuthWindow(`${body.data.popupUrl}&${authUrlParams}`);
     });
   };
 
-  onCreateAuth = () => {
-    getAuthCreateUrl(this.props.id, this.state.authExternalId).then(({ body }) => {
-      openAuthWindow(`${body.data.popupUrl}&${this.state.authUrlParams}`);
-    });
+  const handleChange = (name) => (event) => {
+    const value = event.target.value;
+    if (name === 'authExternalId') {
+      setAuthExternalId(value);
+    } else if (name === 'authUrlParams') {
+      setAuthUrlParams(value);
+    }
   };
 
-  handleChange = (name) => (event) => {
-    this.setState({
-      [name]: event.target.value,
-    });
+  const enabledState = instanceState !== undefined ? instanceState : enabled;
+
+  console.log('Instance Component', configFinished);
+
+  const styles = {
+    controls: {
+      margin: '10px',
+      float: 'right',
+      maxWidth: '400px',
+    },
+    pill: {
+      backgroundColor: enabledState ? '#7ebc54' : '#df5252',
+      borderRadius: '4px',
+      marginRight: '10px',
+      color: 'white',
+      padding: '3px 5px',
+    },
+    item: {
+      width: '100%',
+      border: 'none',
+    },
+    name: {
+      marginTop: '2px',
+    },
+    button: {
+      width: '100%',
+      marginBottom: '10px',
+    },
+    textFields: {
+      width: '100%',
+      margin: '10px 0',
+    },
   };
 
-  render() {
-    const { id, name } = this.props;
-    const { configWizardSrc } = this.state;
+  console.log('NAME & ENABLED?: ', name, enabled, last);
 
-    const enabled = get(this.state, 'instanceState', this.props.enabled);
-
-    const styles = {
-      controls: {
-        margin: '10px',
-        float: 'right',
-        maxWidth: '400px',
-      },
-      pill: {
-        backgroundColor: enabled ? '#7ebc54' : '#df5252',
-        borderRadius: '4px',
-        marginRight: '10px',
-        color: 'white',
-        padding: '3px 5px',
-      },
-      item: {
-        width: '100%',
-        border: 'none',
-      },
-      name: {
-        marginTop: '2px',
-      },
-      button: {
-        width: '100%',
-        marginBottom: '10px',
-      },
-      textFields: {
-        width: '100%',
-        margin: '10px 0',
-      },
-    };
-
-    updateSolutionInstance(this.props.id, true).then(() => {
-      this.setState({ instanceState: true });
+  if (configFinished && last === 'YES') {
+    updateSolutionInstance(id, true).then(() => {
+      setConfigFinished(false);
+      setInstanceState(true);
     });
+  }
 
-    return (
-      <Loading loading={this.state.loading}>
-        <ExpansionPanel key={id} style={styles.item}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <span style={styles.pill}>{enabled ? 'enabled' : 'disabled'}</span>
-            <Typography style={styles.name}>{name}</Typography>
-          </ExpansionPanelSummary>
+  return (
+    <Loading loading={loading}>
+      <ExpansionPanel key={id} style={styles.item}>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <span style={styles.pill}>{enabled ? 'enabled' : 'disabled'}</span>
+          <Typography style={styles.name}>{name}</Typography>
+        </ExpansionPanelSummary>
 
-          <ExpansionPanelDetails>
-            <div id="Controls" style={styles.controls}>
-              <Button
-                style={styles.button}
-                onClick={this.onClickEnable}
-                variant="outlined"
-                color="primary"
-              >
-                {enabled ? 'Disable' : 'Enable'}
-              </Button>
-              {/* <Button
+        <ExpansionPanelDetails>
+          <div id="Controls" style={styles.controls}>
+            <Button
+              style={styles.button}
+              onClick={onClickEnable}
+              variant="outlined"
+              color="primary"
+            >
+              {enabledState ? 'Disable' : 'Enable'}
+            </Button>
+            {/* <Button
                                 style={styles.button}
-                                onClick={this.onClickConfigure}
+                                onClick={onClickConfigure}
                                 variant="outlined"
                                 color="primary"
                             >
@@ -157,7 +160,7 @@ export class Instance extends React.PureComponent {
                             </Button>
                             <Button
                                 style={styles.button}
-                                onClick={this.onClickConfigureWithValidation}
+                                onClick={onClickConfigureWithValidation}
                                 variant="outlined"
                                 color="primary"
                             >
@@ -165,27 +168,27 @@ export class Instance extends React.PureComponent {
                             </Button>
                             <Button
                                 style={styles.button}
-                                onClick={this.onClickConfigureInIframe}
+                                onClick={onClickConfigureInIframe}
                                 variant="outlined"
                                 color="primary"
                             >
                                 Configure in iframe
                             </Button> */}
-              <Button
-                style={styles.button}
-                onClick={this.onClickDelete}
-                variant="outlined"
-                color="primary"
-              >
-                Delete
-              </Button>
+            <Button
+              style={styles.button}
+              onClick={onClickDelete}
+              variant="outlined"
+              color="primary"
+            >
+              Delete
+            </Button>
 
-              {/* <Typography variant="title">Create auth</Typography>
+            {/* <Typography variant="title">Create auth</Typography>
               <TextField
                 style={styles.textFields}
                 label="Auth external id"
-                value={this.state.authExternalId}
-                onChange={this.handleChange('authExternalId')}
+                value={authExternalId}
+                onChange={handleChange('authExternalId')}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -193,28 +196,27 @@ export class Instance extends React.PureComponent {
               <TextField
                 style={styles.textFields}
                 label="Advanced Url Params"
-                value={this.state.authUrlParams}
-                onChange={this.handleChange('authUrlParams')}
+                value={authUrlParams}
+                onChange={handleChange('authUrlParams')}
                 InputLabelProps={{
                   shrink: true,
                 }}
               />
               <Button
                 style={styles.button}
-                onClick={this.onCreateAuth}
+                onClick={onCreateAuth}
                 variant="outlined"
                 color="primary"
-                disabled={!this.state.authExternalId}
+                disabled={!authExternalId}
               >
                 Create auth
               </Button> */}
-            </div>
-            {configWizardSrc && <ConfigWizard src={configWizardSrc} onClose={this.closeIframe} />}
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-      </Loading>
-    );
-  }
-}
+          </div>
+          {configWizardSrc && <ConfigWizard src={configWizardSrc} onClose={closeIframe} />}
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+    </Loading>
+  );
+};
 
 export default withTheme()(Instance);

@@ -10,6 +10,7 @@ import SolutionsMine from './views/SolutionsMine';
 import SolutionsDiscover from './views/SolutionsDiscover';
 import Authentications from './views/Authentications';
 import Users from './views/Users';
+import PasswordReset from './components/auth/PasswordReset';
 const App = () => {
   const currentPathname = window.location.pathname;
   return (
@@ -20,6 +21,7 @@ const App = () => {
         </Switch>
         {/* <Route path="/demo" component={Demo} /> */}
         <Route path="/login" component={Login} />
+        <Route path="/user-reset-password" component={PasswordReset} />
         <PrivateRoute path="/account" component={Account} />
         <PrivateRoute path="/solutions/discover" component={SolutionsDiscover} />
         <PrivateRoute path="/solutions/mine" component={SolutionsMine} />

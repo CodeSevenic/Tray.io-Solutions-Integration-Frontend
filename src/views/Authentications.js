@@ -162,7 +162,7 @@ export class Authentications extends React.PureComponent {
               Authentications
             </Typography>
             <div className="authButtons" style={this.styles.headerOptions}>
-              <Button
+              {/* <Button
                 variant="outlined"
                 color="primary"
                 disabled={this.state.loading}
@@ -170,7 +170,7 @@ export class Authentications extends React.PureComponent {
                 style={this.styles.headerOption}
               >
                 New
-              </Button>
+              </Button> */}
               <Button
                 variant="outlined"
                 color="primary"

@@ -158,6 +158,8 @@ div > div > div > #Controls {
   display: flex;
   justify-content: center;
   width: 100%;
+  overflow: auto;
+  max-height: 920px;
 }
 .content > div {
   width: 100%;

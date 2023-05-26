@@ -1,0 +1,63 @@
+﻿div > .solutions-list {
+  background-color: transparent;
+  box-shadow: none !important;
+}
+div > .solutions-list .solutions-list-ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  background-color: transparent !important;
+  margin: 0px !important;
+  padding-bottom: 50px;
+}
+
+.solutions-list-ul > li {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px;
+  background: white;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+    0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+}
+
+.solutions-list-ul > li > .solution-item {
+  padding: 0px;
+  margin-bottom: 20px;
+  border: none !important;
+}
+
+.solutions-list-ul > li > .solution-item > div span {
+  font-weight: 600;
+}
+
+.solutions-list-ul > li .solution-item-action {
+  position: relative !important;
+  top: unset !important;
+  right: unset !important;
+  transform: unset !important;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.solution-description {
+  margin-bottom: 20px;
+  flex: 1;
+}
+.solution-description p {
+  font-size: 13px !important;
+  line-height: 1.5;
+  color: rgb(21, 27, 38);
+}
+
+@media screen and (max-width: 768px) {
+  div > .solutions-list .solutions-list-ul {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  div > .solutions-list .solutions-list-ul {
+    grid-template-columns: 1fr;
+  }
+}

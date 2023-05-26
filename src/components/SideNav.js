@@ -27,7 +27,7 @@ const Nav = () => {
     <div className="sideNav-wrapper">
       <div className="root">
         <List component="nav">
-          {admin === 'true' && (
+          {/* {admin === 'true' && (
             <Link to="/account" className="link">
               <ListItem button>
                 <ListItemIcon>
@@ -36,7 +36,7 @@ const Nav = () => {
                 <ListItemText inset primary="Account" />
               </ListItem>
             </Link>
-          )}
+          )} */}
           <Link to="/authentications" className="link">
             <ListItem button>
               <ListItemIcon>
@@ -81,7 +81,7 @@ const Nav = () => {
                   <ListItemIcon>
                     <CircleIcon style={{ borderRadius: 20 }} />
                   </ListItemIcon>
-                  <ListItemText inset primary="My Instances" style={{ whiteSpace: 'nowrap' }} />
+                  <ListItemText inset primary="My Solutions" style={{ whiteSpace: 'nowrap' }} />
                 </ListItem>
               </Link>
 
@@ -90,7 +90,7 @@ const Nav = () => {
                   <ListItemIcon>
                     <CircleIcon style={{ borderRadius: 20 }} />
                   </ListItemIcon>
-                  <ListItemText inset primary="Discover" />
+                  <ListItemText inset primary="Add Solutions" />
                 </ListItem>
               </Link>
             </List>

@@ -17,7 +17,8 @@ const Users = () => {
   const [deleteSuccess, setDeleteSuccess] = useState(false);
   const [message, setMessage] = useState('');
 
-  console.log(overlay);
+  // console.log(overlay);
+  console.log(users);
 
   const overlayRef = useRef(null);
 
@@ -49,6 +50,7 @@ const Users = () => {
   const handleDeleteUser = () => {
     setLoading(true);
     deleteUser(userId).then(({ ok, body }) => {
+      console.log(ok, body);
       if (ok) {
         setDeleteSuccess(true);
         setMessage('Delete Successful 😊');
@@ -58,7 +60,7 @@ const Users = () => {
         setMessage('Deletion Failed 😒');
         setLoading(false);
       }
-      console.log(ok, body);
+      // console.log(ok, body);
       getUsers().then(({ ok, body }) => {
         const { edges } = body.results.data.users;
         if (edges) {
@@ -99,8 +101,6 @@ const Users = () => {
     setDeleteModal(!deleteModal);
     setOverlay(!overlay);
   };
-
-  console.log(userId);
 
   const confirmDelete = () => {
     return (

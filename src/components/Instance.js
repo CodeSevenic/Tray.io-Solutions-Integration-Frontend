@@ -1,3 +1,4 @@
+import { ToastContainer, toast } from 'react-toastify/dist/react-toastify';
 import Typography from '@material-ui/core/Typography';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -5,9 +6,10 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 import { withTheme } from '@material-ui/core/styles/index';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Loading from './Loading';
 import { get } from 'lodash';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { openConfigWindow } from '../lib/configWindow';
 
@@ -90,6 +92,14 @@ const Instance = ({ id, name, enabled, loadAllSolutionInstances, last }) => {
   };
 
   const enabledState = instanceState !== undefined ? instanceState : enabled;
+  // If the state of the instance has changed, show a toast
+  const [wasEnabled, setWasEnabled] = useState(enabledState);
+  useEffect(() => {
+    if (!wasEnabled && enabledState) {
+      toast.success(`${name} has now been enabled`);
+    }
+    setWasEnabled(enabledState);
+  }, [enabledState, wasEnabled, name]);
 
   console.log('Instance Component', configFinished);
 
@@ -134,6 +144,18 @@ const Instance = ({ id, name, enabled, loadAllSolutionInstances, last }) => {
 
   return (
     <Loading loading={loading}>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <ExpansionPanel key={id} style={styles.item}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <span style={styles.pill}>{enabled ? 'enabled' : 'disabled'}</span>

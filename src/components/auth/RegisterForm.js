@@ -30,6 +30,7 @@ class RegisterForm extends React.Component {
                   return onRegister({
                     name: this.nameElem.value,
                     username: this.usernameElem.value,
+                    email: this.emailElem.value,
                     password: this.passwordElem.value,
                     admin: this.isAdminElem.value,
                   });
@@ -52,6 +53,16 @@ class RegisterForm extends React.Component {
                   inputRef={(input) => (this.usernameElem = input)}
                   label="Username"
                   placeholder="Username"
+                  fullWidth={true}
+                  style={{ marginBottom: 10 }}
+                  required
+                  autoComplete="off"
+                />
+
+                <Input
+                  inputRef={(input) => (this.emailElem = input)}
+                  label="Email"
+                  placeholder="Email"
                   fullWidth={true}
                   style={{ marginBottom: 10 }}
                   required

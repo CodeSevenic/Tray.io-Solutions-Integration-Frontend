@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+﻿import React, { useRef, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
@@ -6,6 +6,9 @@ import { white } from '@material-ui/core/colors';
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import Input from '@material-ui/core/Input';
 import Typography from '@material-ui/core/Typography';
+import Logo from '../../img/Artboard.png';
+import Loading from '../Loading';
+import './PasswordReset.css';
 
 const styles = {
   field: { marginTop: 10 },
@@ -40,43 +43,66 @@ const styles = {
 };
 
 const LoginForm = ({ onLogin, history }) => {
-  const emailRef = useRef();
-  const passwordRef = useRef();
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const response = await fetch('/api/reset-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+      console.log(response);
+      if (response.ok) {
+        setLoading(false);
+        setMessage(data.message);
+      } else {
+        setLoading(false);
+        setMessage(data.message);
+      }
+    } catch (error) {
+      setLoading(false);
+      setMessage(`${error.message}`);
+    }
+  };
 
   return (
     <div className="form-div">
       <div style={styles.loginContainer}>
+        <div className="form-wrapper unsetBoxShadow">
+          <div className="logo-wrapper">
+            <img width={130} height={130} src={Logo} alt="YuboData Logo" />
+          </div>
+          <Loading loading={loading}></Loading>
+        </div>
         <Paper style={styles.paper}>
           <Typography style={styles.loginHeader} variant="headline">
-            LOGIN
+            <b
+              style={{
+                textTransform: 'uppercase',
+              }}
+            >
+              Reset Password
+            </b>
           </Typography>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              return onLogin({
-                email: emailRef.current.value,
-                password: passwordRef.current.value,
-              });
-            }}
-          >
+          <form onSubmit={handleSubmit}>
             <Input
-              inputRef={emailRef}
               label="Email"
-              placeholder="Email"
               fullWidth
               className="login-input"
               type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
-            />
-            <Input
-              inputRef={passwordRef}
-              style={{ marginTop: 10 }}
-              label="Password"
-              placeholder="Password"
-              fullWidth
-              type="password"
-              className="login-input"
-              autoComplete="new-password"
             />
             <div className="login-actions">
               <Button
@@ -86,19 +112,11 @@ const LoginForm = ({ onLogin, history }) => {
                 color="primary"
                 type="submit"
               >
-                Login
-              </Button>
-              <Button
-                className="login-button lost-pass"
-                style={styles.loginBtn}
-                variant="outlined"
-                color="primary"
-                onClick={() => history.push('/user-reset-password')}
-              >
-                Lost Password?
+                Reset Password
               </Button>
             </div>
           </form>
+          {message && <p className="response-message">{message}</p>}
         </Paper>
       </div>
     </div>

@@ -22,15 +22,27 @@
   font-size: 1rem !important;
 }
 
+.login-actions {
+  margin-top: 30px;
+}
+
 .form-div > div > div .login-button {
   display: block;
   margin: 20px auto 0 auto !important;
   float: unset !important;
-  width: 120px;
+  width: 170px;
   background-color: transparent;
   color: #222832;
   font-weight: bold;
   border: 1px solid #222832;
+}
+.form-div > div > div .login-button.lost-pass {
+  display: block;
+  margin: 20px auto 0 auto !important;
+  float: unset !important;
+  width: 170px;
+  background-color: transparent !important;
+  color: #ea5a28 !important;
 }
 
 .form-div > div > div form div:first-child {

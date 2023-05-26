@@ -27,16 +27,15 @@ const Nav = () => {
     <div className="sideNav-wrapper">
       <div className="root">
         <List component="nav">
-          {/* {admin === 'true' && (
-            <Link to="/account" className="link">
-              <ListItem button>
-                <ListItemIcon>
-                  <AccountIcon />
-                </ListItemIcon>
-                <ListItemText inset primary="Account" />
-              </ListItem>
-            </Link>
-          )} */}
+          <Link to="/account" className="link">
+            <ListItem button>
+              <ListItemIcon>
+                <AccountIcon />
+              </ListItemIcon>
+              <ListItemText inset primary="Account" />
+            </ListItem>
+          </Link>
+
           <Link to="/authentications" className="link">
             <ListItem button>
               <ListItemIcon>

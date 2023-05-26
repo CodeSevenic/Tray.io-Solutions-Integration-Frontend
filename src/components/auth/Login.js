@@ -30,6 +30,7 @@ const Login = (props) => {
         sessionStorage.setItem('username', `${JSON.parse(text).username}`);
         sessionStorage.setItem('adm', `${JSON.parse(text).adm}`);
         sessionStorage.setItem('chg', `${JSON.parse(text).chg}`);
+        sessionStorage.setItem('docId', `${JSON.parse(text).docId}`);
 
         auth.authenticate(() => {
           setRedirectToReferrer(true);

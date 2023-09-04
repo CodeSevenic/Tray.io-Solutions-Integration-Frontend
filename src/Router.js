@@ -11,6 +11,7 @@ import SolutionsDiscover from './views/SolutionsDiscover';
 import Authentications from './views/Authentications';
 import Users from './views/Users';
 import PasswordReset from './components/auth/PasswordReset';
+import ComingSoon from './views/ComingSoon';
 const App = () => {
   const currentPathname = window.location.pathname;
   return (
@@ -20,8 +21,8 @@ const App = () => {
           <RedirectMain exact from={`/`} />
         </Switch>
         {/* <Route path="/demo" component={Demo} /> */}
-        <Route path="/login" component={Login} />
-        <Route path="/user-reset-password" component={PasswordReset} />
+        <Route path="/login" component={ComingSoon} />
+        <Route path="/user-reset-password" component={ComingSoon} />
         <PrivateRoute path="/account" component={Account} />
         <PrivateRoute path="/solutions/discover" component={SolutionsDiscover} />
         <PrivateRoute path="/solutions/mine" component={SolutionsMine} />
